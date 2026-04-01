@@ -1,0 +1,164 @@
+{
+    "name": "Sabarna Saha",
+    "headline": "AI/ML Engineer · Power Engineering @ Jadavpur University",
+    "tagline": "Architect of Digital Experiences",
+    "bio": "AI/ML Engineer with hands-on experience in Retrieval-Augmented Generation, deep learning, and NLP. Currently pursuing Power Engineering at Jadavpur University while building intelligent systems that bridge research and real-world impact.",
+    "location": "Kolkata, West Bengal, India",
+    "email": "",
+    "linkedin": "https://www.linkedin.com/in/sabarnasaha/",
+    "github": "https://github.com/Sabarna07-tech",
+    "leetcode": "https://leetcode.com/u/TryExcept/",
+
+    "experience": [
+        {
+            "title": "AI/ML Engineer",
+            "company": "AiSPRY",
+            "type": "Internship",
+            "location": "Hyderabad, Telangana, India · On-site",
+            "start": "Oct 2024",
+            "end": "Jul 2025",
+            "duration": "10 mos",
+            "description": "Built production-grade AI systems leveraging Retrieval-Augmented Generation (RAG), TensorFlow, ChromaDB, and Redis. Worked on deep learning models using RNNs, LSTMs, and GRUs for real-world NLP and time-series applications.",
+            "skills": ["RAG", "TensorFlow", "ChromaDB", "Redis", "GRU", "LSTM"]
+        },
+        {
+            "title": "Member",
+            "company": "GDSC Jadavpur University",
+            "type": "Part-time",
+            "location": "Kolkata, India",
+            "start": "Oct 2023",
+            "end": "Present",
+            "duration": "2 yrs 7 mos",
+            "description": "Active member of Google Developer Student Clubs at Jadavpur University, contributing to open-source projects and collaborative tech initiatives.",
+            "skills": ["Open Source", "Community"]
+        },
+        {
+            "title": "Member",
+            "company": "Institution of Engineering and Technology (IET)",
+            "type": "Part-time",
+            "location": "Kolkata, West Bengal, India",
+            "start": "May 2023",
+            "end": "Present",
+            "duration": "3 yrs",
+            "description": "Member of the multidisciplinary professional engineering institution with authority to establish professional registration for Chartered Engineer, Incorporated Engineer, and Engineering Technician.",
+            "skills": ["Engineering", "Professional Development"]
+        },
+        {
+            "title": "Organizing Committee Member",
+            "company": "SRIJAN, Jadavpur University",
+            "type": "Part-time",
+            "location": "Kolkata, India",
+            "start": "Feb 2023",
+            "end": "Present",
+            "duration": "3 yrs 3 mos",
+            "description": "Part of the organizing committee for SRIJAN — Jadavpur University's flagship technical festival. Drove event planning, coordination, and teamwork across departments.",
+            "skills": ["Teamwork", "Event Management"]
+        }
+    ],
+
+    "education": [
+        {
+            "school": "Jadavpur University",
+            "degree": "Bachelor of Engineering - BE",
+            "field": "Power Engineering",
+            "start": "Nov 2022",
+            "end": "Jun 2026",
+            "grade": "7.5",
+            "skills": ["Microprocessors", "8051 Microcontroller", "x86 Assembly", "MATLAB", "Ansys Fluent", "C", "Python"]
+        },
+        {
+            "school": "Sri Aurobindo Vidyamandir",
+            "degree": "Secondary Education",
+            "field": "",
+            "start": "",
+            "end": "",
+            "grade": "",
+            "skills": []
+        }
+    ],
+
+    "certifications": [
+        {
+            "name": "Oracle Cloud Infrastructure 2024 Generative AI Professional",
+            "issuer": "Oracle",
+            "date": "Jul 2024",
+            "expires": "Jul 2026",
+            "credentialId": "100756890OCI2024GAIOCP",
+            "skills": ["Generative AI", "LLM"]
+        },
+        {
+            "name": "Keras & TensorFlow for Deep Learning",
+            "issuer": "Scaler",
+            "date": "Sep 2024",
+            "credentialId": "",
+            "skills": ["Keras", "LSTM", "RNN"]
+        },
+        {
+            "name": "Problem Solving (Intermediate)",
+            "issuer": "HackerRank",
+            "date": "Sep 2024",
+            "credentialId": "93DCB5FD47AB",
+            "skills": ["Problem Solving"]
+        },
+        {
+            "name": "Python (Basic)",
+            "issuer": "HackerRank",
+            "date": "Sep 2024",
+            "credentialId": "F5E0A902D202",
+            "skills": ["Python"]
+        },
+        {
+            "name": "Supervised Machine Learning: Regression and Classification",
+            "issuer": "Coursera",
+            "date": "May 2024",
+            "credentialId": "",
+            "skills": ["Gradient Descent", "Linear Regression", "Logistic Regression"]
+        },
+        {
+            "name": "Foundations of Cybersecurity",
+            "issuer": "Google",
+            "date": "Feb 2024",
+            "credentialId": "R3PZHU2ZW8QH",
+            "skills": ["Cybersecurity"]
+        },
+        {
+            "name": "Foundations of Prompt Engineering",
+            "issuer": "Amazon Web Services (AWS)",
+            "date": "Nov 2023",
+            "credentialId": "",
+            "skills": ["Prompt Engineering"]
+        },
+        {
+            "name": "Excel for Data & Analytics",
+            "issuer": "Chegg India",
+            "date": "Nov 2023",
+            "credentialId": "",
+            "skills": ["Excel", "Data Analytics"]
+        },
+        {
+            "name": "The Data Science Course: Complete Data Science Bootcamp",
+            "issuer": "Udemy",
+            "date": "Sep 2023",
+            "credentialId": "",
+            "skills": ["Machine Learning", "Data Science"]
+        }
+    ],
+
+    "skills": {
+        "ai_ml": ["TensorFlow", "Keras", "RAG", "NLP", "RNN", "LSTM", "GRU", "Generative AI", "LLM", "Machine Learning", "Time Series Forecasting"],
+        "languages": ["Python", "C", "C++", "Go", "HTML5", "x86 Assembly"],
+        "data": ["Pandas", "NumPy", "Matplotlib", "Seaborn", "Statsmodels"],
+        "tools": ["ChromaDB", "Redis", "Apache Airflow", "Django REST Framework", "MATLAB", "Ansys Fluent", "Adobe Premiere Pro"],
+        "engineering": ["Microprocessors", "8051 Microcontroller", "Power Engineering"]
+    },
+
+    "awards": [
+        {
+            "title": "COMSYS Hackathon-1 — 4th Place",
+            "issuer": "COMSYS Educational Trust & SCEE IIT Mandi",
+            "date": "Oct 2023",
+            "association": "Jadavpur University",
+            "description": "Team placed 4th in COMSYS Hackathon-1 held at IIT Mandi, organized by SCEE IIT Mandi and COMSYS Educational Trust, Kolkata, as part of the 4th International Conference on Frontiers in Computing and Systems (COMSYS-2023)."
+        }
+    ]
+}
