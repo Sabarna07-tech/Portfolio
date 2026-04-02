@@ -535,16 +535,14 @@
     </section>
     <!-- Experience Timeline — Fractal Tree as Living Centerline -->
     <section class="py-32 bg-surface relative overflow-hidden" id="timeline">
-        <!-- Fractal Tree Canvas — positioned behind timeline content -->
-        <canvas id="fractal-canvas" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;"></canvas>
-        <!-- Atmospheric glow at the base -->
-        <div class="absolute bottom-0 left-0 right-0 h-40 pointer-events-none z-[1]" style="background:radial-gradient(ellipse 60% 100% at 50% 100%, rgba(160,120,255,0.1) 0%, transparent 70%);"></div>
+
         <div class="max-w-7xl mx-auto px-8 relative z-[2]">
             <h2 class="font-headline text-4xl font-extrabold tracking-tight mb-4 text-center">Professional <span
                     class="text-gradient">Evolution</span></h2>
-            <p class="text-on-surface-variant max-w-xl mx-auto text-center mb-20 text-sm opacity-70">Each branch represents a new chapter — hover to see them sway. Double-click to regenerate.</p>
+
             <div class="relative max-w-4xl mx-auto">
-                <!-- Old static vertical line removed — the fractal tree trunk IS the centerline -->
+                <!-- Vertical timeline center line -->
+                <div class="absolute left-1/2 transform -translate-x-1/2 w-0.5 h-full bg-outline-variant opacity-20"></div>
                 <div class="space-y-24" id="experience-timeline">
                     <!-- Experience items injected by linkedin.js -->
                     <div class="glass-panel p-6 rounded-lg animate-pulse h-32"></div>
@@ -914,21 +912,28 @@
 
         /* === SCROLL PROGRESS === */
         const progressBar = document.getElementById('scroll-progress');
-        window.addEventListener('scroll', () => {
-            const h = document.documentElement.scrollHeight - window.innerHeight;
-            if (h > 0 && progressBar) progressBar.style.width = (window.scrollY / h * 100) + '%';
-        }, { passive: true });
+        let scrollHeightCached = 0;
+        const updateScrollHeight = () => {
+            scrollHeightCached = document.documentElement.scrollHeight - window.innerHeight;
+        };
+        updateScrollHeight();
+        window.addEventListener('resize', updateScrollHeight, { passive: true });
 
-        /* === CUSTOM CURSOR === */
+        /* === CUSTOM CURSOR (only animates when mouse moves) === */
         if (!reducedMotion && window.matchMedia('(pointer: fine)').matches) {
             const cursor = document.getElementById('cursor-glow');
-            let cx = 0, cy = 0, tx = 0, ty = 0;
-            document.addEventListener('mousemove', e => { tx = e.clientX; ty = e.clientY; });
-            (function loop() {
+            let cx = 0, cy = 0, tx = 0, ty = 0, cursorRafId = 0;
+            const cursorLoop = () => {
                 cx += (tx - cx) * 0.15; cy += (ty - cy) * 0.15;
                 if (cursor) { cursor.style.left = cx + 'px'; cursor.style.top = cy + 'px'; }
-                requestAnimationFrame(loop);
-            })();
+                if (Math.abs(tx - cx) > 0.5 || Math.abs(ty - cy) > 0.5) {
+                    cursorRafId = requestAnimationFrame(cursorLoop);
+                } else { cursorRafId = 0; }
+            };
+            document.addEventListener('mousemove', e => {
+                tx = e.clientX; ty = e.clientY;
+                if (!cursorRafId) cursorRafId = requestAnimationFrame(cursorLoop);
+            });
             document.addEventListener('mouseover', e => {
                 const t = e.target;
                 if (t && (t.closest('a') || t.closest('button') || t.closest('[onclick]') || t.closest('.tilt-card')))
@@ -937,7 +942,7 @@
             });
         }
 
-        /* === FLOATING ISLAND NAV & PARALLAX SCROLL === */
+        /* === FLOATING ISLAND NAV & PARALLAX SCROLL (UNIFIED HANDLER) === */
         const navIsland = document.getElementById('nav-island');
         const navLinks = document.querySelectorAll('.nav-link-island');
         const parallaxLayers = document.querySelectorAll('.parallax-layer');
@@ -947,24 +952,44 @@
         const sectionMap = [{id:'portfolio', el:null},{id:'process', el:null},{id:'timeline', el:null},{id:'tech', el:null},{id:'contact', el:null}];
         sectionMap.forEach(s => { s.el = document.getElementById(s.id); });
 
+        // Pre-cache parallax speed values (avoids DOM getAttribute on every scroll frame)
+        const parallaxSpeeds = [];
+        parallaxLayers.forEach(layer => {
+            parallaxSpeeds.push(parseFloat(layer.getAttribute('data-speed')) || 0);
+        });
+
+        // Cache offsets to prevent layout thrashing on scroll
+        const updateOffsets = () => {
+            sectionMap.forEach(s => { if(s.el) s.offset = s.el.offsetTop; });
+        };
+        updateOffsets();
+        window.addEventListener('resize', updateOffsets, { passive: true });
+
+        // === SINGLE UNIFIED SCROLL HANDLER ===
         window.addEventListener('scroll', () => {
             const scrollY = window.scrollY;
+
+            // 1. Scroll progress bar
+            if (scrollHeightCached > 0 && progressBar) {
+                progressBar.style.width = (scrollY / scrollHeightCached * 100) + '%';
+            }
+
+            // 2. Nav island scroll class
             if (navIsland) navIsland.classList.toggle('scrolled', scrollY > 60);
 
-            // Highlight active nav link
+            // 3. Highlight active nav link (using cached offsets)
             let activeId = 'portfolio';
             sectionMap.forEach(s => {
-                if (s.el && s.el.offsetTop - 200 <= scrollY) activeId = s.id;
+                if (s.el && s.offset - 200 <= scrollY) activeId = s.id;
             });
             navLinks.forEach(link => {
                 link.classList.toggle('active', link.getAttribute('href') === '#' + activeId);
             });
             
-            // Depth & Parallax Scroll Effect
+            // 4. Depth & Parallax Scroll Effect (using pre-cached speeds)
             if (!reducedMotion) {
-                parallaxLayers.forEach(layer => {
-                    const speed = parseFloat(layer.getAttribute('data-speed')) || 0;
-                    layer.style.transform = `translate3d(0, ${scrollY * speed}px, 0)`;
+                parallaxLayers.forEach((layer, i) => {
+                    layer.style.transform = `translate3d(0, ${scrollY * parallaxSpeeds[i]}px, 0)`;
                 });
             }
             lastScroll = scrollY;
@@ -1101,291 +1126,7 @@
             });
         });
 
-        /* ═══════════════════════════════════════════════════════════════════ */
-        /* FRACTAL TREE — LIVING TIMELINE CENTERLINE                          */
-        /* The trunk IS the timeline spine; branches reach toward cards        */
-        /* ═══════════════════════════════════════════════════════════════════ */
-        (function initFractalTree() {
-            const section = document.getElementById('timeline');
-            const canvas  = document.getElementById('fractal-canvas');
-            if (!canvas || !section) return;
-            const ctx = canvas.getContext('2d');
-            let W, H, dpr;
-            let mouseX = 0.5, mouseY = 0.5;
-            let growProgress = 0;
-            let growing = false;
-            let particles = [];
-            let time = 0;
-            let seed = Math.random() * 1000;
 
-            /* ---- helpers ---- */
-            function seededRandom(s) {
-                const x = Math.sin(s) * 43758.5453123;
-                return x - Math.floor(x);
-            }
-
-            /* ---- resize: match canvas to full section ---- */
-            function resize() {
-                const rect = section.getBoundingClientRect();
-                dpr = Math.min(window.devicePixelRatio || 1, 2);
-                W = rect.width;
-                H = rect.height;
-                canvas.width  = W * dpr;
-                canvas.height = H * dpr;
-                canvas.style.width  = W + 'px';
-                canvas.style.height = H + 'px';
-                ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-            }
-            window.addEventListener('resize', resize);
-            resize();
-
-            /* ---- mouse tracking (on section so pointer-events:none on canvas still works) ---- */
-            section.addEventListener('mousemove', e => {
-                const r = section.getBoundingClientRect();
-                mouseX = (e.clientX - r.left) / r.width;
-                mouseY = (e.clientY - r.top)  / r.height;
-            });
-            section.addEventListener('mouseleave', () => { mouseX = 0.5; mouseY = 0.5; });
-            section.addEventListener('dblclick', () => { seed = Math.random() * 1000; growProgress = 0; growing = true; });
-
-            /* ---- particles ---- */
-            function spawnParticle(x, y, hue) {
-                if (particles.length > 120) return;
-                particles.push({
-                    x, y,
-                    vx: (Math.random() - 0.5) * 0.5,
-                    vy: -(Math.random() * 0.5 + 0.15),
-                    life: 1, hue,
-                    size: Math.random() * 2.5 + 1
-                });
-            }
-            function updateParticles() {
-                for (let i = particles.length - 1; i >= 0; i--) {
-                    const p = particles[i];
-                    p.x += p.vx; p.y += p.vy;
-                    p.vy -= 0.001;
-                    p.life -= 0.006;
-                    if (p.life <= 0) { particles.splice(i, 1); continue; }
-                    ctx.beginPath();
-                    ctx.arc(p.x, p.y, p.size * p.life, 0, Math.PI * 2);
-                    ctx.fillStyle = `hsla(${p.hue}, 90%, 75%, ${p.life * 0.5})`;
-                    ctx.shadowColor = `hsla(${p.hue}, 100%, 70%, ${p.life * 0.35})`;
-                    ctx.shadowBlur = 10;
-                    ctx.fill();
-                }
-                ctx.shadowBlur = 0;
-            }
-
-            /* ---- VERTICAL TRUNK — acts as timeline spine ---- */
-            function drawTrunk() {
-                const cx = W / 2;
-                const topY   = 100;             // below headline
-                const botY   = H - 40;         // near bottom
-                const trunkH = botY - topY;
-                const visH   = trunkH * growProgress;
-
-                // Main trunk line — soft gradient
-                const grad = ctx.createLinearGradient(cx, botY, cx, botY - visH);
-                grad.addColorStop(0, 'rgba(160, 120, 255, 0.35)');
-                grad.addColorStop(0.5, 'rgba(120, 160, 255, 0.25)');
-                grad.addColorStop(1, 'rgba(60, 220, 240, 0.15)');
-
-                const sway = Math.sin(time * 0.0015) * 2;
-
-                ctx.beginPath();
-                ctx.moveTo(cx, botY);
-                // Organic cubic curve instead of straight line
-                ctx.bezierCurveTo(
-                    cx + sway, botY - visH * 0.33,
-                    cx - sway, botY - visH * 0.66,
-                    cx + sway * 0.5, botY - visH
-                );
-                ctx.strokeStyle = grad;
-                ctx.lineWidth = 3;
-                ctx.lineCap = 'round';
-                ctx.shadowColor = 'rgba(160,120,255,0.3)';
-                ctx.shadowBlur = 16;
-                ctx.stroke();
-                ctx.shadowBlur = 0;
-
-                // Pulsing glow dots along trunk
-                const dotCount = 8;
-                for (let i = 0; i < dotCount; i++) {
-                    const frac = i / (dotCount - 1);
-                    if (frac > growProgress) break;
-                    const dy = botY - trunkH * frac;
-                    const dx = cx + Math.sin(time * 0.0015 + frac * 3) * 1.5;
-                    const pulse = (Math.sin(time * 0.004 + frac * Math.PI * 2) + 1) * 0.5;
-                    const hue = 270 - frac * 90;
-                    ctx.beginPath();
-                    ctx.arc(dx, dy, 2.5 + pulse * 2, 0, Math.PI * 2);
-                    ctx.fillStyle = `hsla(${hue}, 90%, 70%, ${0.25 + pulse * 0.35})`;
-                    ctx.shadowColor = `hsla(${hue}, 100%, 65%, ${0.3 + pulse * 0.3})`;
-                    ctx.shadowBlur = 12;
-                    ctx.fill();
-                }
-                ctx.shadowBlur = 0;
-
-                return { cx, topY, botY, trunkH, sway };
-            }
-
-            /* ---- BRANCHES — grow from trunk points toward sides ---- */
-            const MAX_DEPTH = 9;
-
-            function drawBranch(x1, y1, angle, length, depth, branchSeed) {
-                if (depth > MAX_DEPTH || length < 1.5) return;
-
-                const depthRatio = depth / MAX_DEPTH;
-                if (depthRatio > growProgress) return;
-
-                // Mouse-reactive sway (stronger at tips)
-                const swayIntensity = depth / MAX_DEPTH;
-                const swayX = (mouseX - 0.5) * 0.35 * swayIntensity;
-                const wind  = Math.sin(time * 0.0012 + depth * 0.7 + branchSeed * 0.1) * 0.025;
-                const adjustedAngle = angle + swayX + wind;
-
-                const x2 = x1 + Math.cos(adjustedAngle) * length;
-                const y2 = y1 + Math.sin(adjustedAngle) * length;
-
-                // Color: deep purple at trunk → cyan at tips
-                const hue = 270 - depth * 22;
-                const lightness = 50 + depth * 4;
-                const alpha = Math.max(0.08, 0.7 - depthRatio * 0.55);
-                const lw = Math.max(0.3, (MAX_DEPTH - depth) * 0.9);
-
-                ctx.beginPath();
-                ctx.moveTo(x1, y1);
-                ctx.lineTo(x2, y2);
-                ctx.strokeStyle = `hsla(${hue}, 75%, ${lightness}%, ${alpha})`;
-                ctx.lineWidth = lw;
-                ctx.lineCap = 'round';
-                if (depth < 3) {
-                    ctx.shadowColor = `hsla(${hue}, 100%, 60%, 0.3)`;
-                    ctx.shadowBlur = 10 - depth * 2;
-                }
-                ctx.stroke();
-                ctx.shadowBlur = 0;
-
-                // Particles at tips
-                if (depth >= MAX_DEPTH - 2 && Math.random() < 0.015) {
-                    spawnParticle(x2, y2, hue);
-                }
-
-                // Glowing nodes
-                if (depth > 1 && depth < MAX_DEPTH - 1) {
-                    const puls = Math.sin(time * 0.003 + branchSeed) * 0.3 + 0.3;
-                    ctx.beginPath();
-                    ctx.arc(x2, y2, lw * 0.7, 0, Math.PI * 2);
-                    ctx.fillStyle = `hsla(${hue}, 85%, 68%, ${puls * alpha})`;
-                    ctx.fill();
-                }
-
-                // Recurse: binary branching
-                const rng1 = seededRandom(branchSeed + 1);
-                const rng2 = seededRandom(branchSeed + 2);
-                const spread = 0.4 + rng1 * 0.35;
-                const shrink = 0.6 + rng2 * 0.16;
-                const nextLen = length * shrink;
-
-                drawBranch(x2, y2, adjustedAngle - spread, nextLen, depth + 1, branchSeed * 2 + 1);
-                drawBranch(x2, y2, adjustedAngle + spread, nextLen, depth + 1, branchSeed * 2 + 2);
-
-                // Extra branch for organic density
-                if (depth > 0 && depth < 5 && seededRandom(branchSeed + 7) > 0.65) {
-                    const extra = (seededRandom(branchSeed + 9) - 0.5) * 1.1;
-                    drawBranch(x2, y2, adjustedAngle + extra, nextLen * 0.6, depth + 2, branchSeed * 3);
-                }
-            }
-
-            /* ---- grow branch clusters from trunk at spaced intervals ---- */
-            function drawBranchClusters(cx, topY, botY, trunkH, sway) {
-                // Create branch-origin points along the trunk
-                const branchCount = 10;
-                for (let i = 0; i < branchCount; i++) {
-                    const frac = (i + 1) / (branchCount + 1);  // evenly distributed
-                    if (frac > growProgress) break;
-
-                    const y = botY - trunkH * frac;
-                    const x = cx + Math.sin(time * 0.0015 + frac * 3) * 1.5;  // follow trunk sway
-
-                    const branchSeed = seed + i * 137.5;
-                    const branchLen = 30 + seededRandom(branchSeed + 50) * 50;
-
-                    // Alternate branches left and right (matching timeline card sides)
-                    const isLeft = i % 2 === 0;
-                    const baseAngle = isLeft ? Math.PI + 0.3 + seededRandom(branchSeed) * 0.4
-                                             : -0.3 - seededRandom(branchSeed) * 0.4;
-
-                    // Primary branch
-                    drawBranch(x, y, baseAngle, branchLen, 1, branchSeed);
-
-                    // Secondary smaller branch at slightly different angle
-                    const secondLen = branchLen * 0.6;
-                    const secondAngle = isLeft ? Math.PI + 0.6 + seededRandom(branchSeed + 3) * 0.3
-                                               : -0.6 - seededRandom(branchSeed + 3) * 0.3;
-                    drawBranch(x, y, secondAngle, secondLen, 2, branchSeed + 100);
-                }
-            }
-
-            /* ---- atmospheric root glow at bottom ---- */
-            function drawRootGlow() {
-                const cx = W / 2;
-                const botY = H - 40;
-                const rg = ctx.createRadialGradient(cx, botY, 0, cx, botY, W * 0.3);
-                rg.addColorStop(0, 'rgba(160,120,255,0.07)');
-                rg.addColorStop(0.5, 'rgba(120,80,255,0.03)');
-                rg.addColorStop(1, 'rgba(0,0,0,0)');
-                ctx.fillStyle = rg;
-                ctx.fillRect(0, 0, W, H);
-
-                // Small root-like elements at the base
-                for (let i = 0; i < 5; i++) {
-                    const rootSeed = seed + i * 47;
-                    const rootAngle = Math.PI / 2 - 0.6 + i * 0.3 + seededRandom(rootSeed) * 0.2;
-                    const rootLen = 20 + seededRandom(rootSeed + 1) * 25;
-                    const rootAlpha = 0.12 + seededRandom(rootSeed + 2) * 0.1;
-                    const rx = cx + (i - 2) * 15;
-                    drawBranch(rx, botY + 10, rootAngle, rootLen, 4, rootSeed);
-                }
-            }
-
-            /* ---- main render loop ---- */
-            function render() {
-                time++;
-                ctx.clearRect(0, 0, W, H);
-
-                // Grow animation
-                if (growing && growProgress < 1) {
-                    growProgress += 0.008;    // slower, more dramatic
-                    if (growProgress >= 1) { growProgress = 1; growing = false; }
-                }
-
-                if (growProgress > 0) {
-                    drawRootGlow();
-                    const { cx, topY, botY, trunkH, sway } = drawTrunk();
-                    drawBranchClusters(cx, topY, botY, trunkH, sway);
-                }
-
-                updateParticles();
-                requestAnimationFrame(render);
-            }
-
-            /* ---- scroll-trigger to start growing ---- */
-            const treeObs = new IntersectionObserver(entries => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting && growProgress === 0) {
-                        growing = true;
-                    }
-                });
-            }, { threshold: 0.15 });
-            treeObs.observe(section);
-
-            // Re-size when timeline content loads (linkedin.js injects cards)
-            const resizeTimer = setInterval(() => { resize(); }, 2000);
-            setTimeout(() => clearInterval(resizeTimer), 15000);
-
-            render();
-        })();
 
     })();
     </script>

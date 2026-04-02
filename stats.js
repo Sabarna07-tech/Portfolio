@@ -24,9 +24,8 @@ const HEATMAP_COLORS = ['#161b22', '#0e4429', '#006d32', '#26a641', '#39d353'];
 // ==========================================
 // INITIALIZATION
 // ==========================================
-document.addEventListener('DOMContentLoaded', async () => {
-    // Small delay to let github.js fire first
-    await new Promise(r => setTimeout(r, 500));
+document.addEventListener('DOMContentLoaded', () => {
+    // Fire after github.js has started (no artificial delay needed; we use DOMContentLoaded ordering)
     initDashboard();
 });
 
@@ -188,9 +187,31 @@ async function fetchLeetCodeStats() {
     }
 
     try {
-        const res = await fetch(`https://alfa-leetcode-api.onrender.com/${LEETCODE_USERNAME}`);
-        if (!res.ok) throw new Error('LeetCode API failed');
-        const data = await res.json();
+        // Fetch both profile (for ranking) and solved stats (for problem counts) in parallel
+        const [profileRes, solvedRes] = await Promise.all([
+            fetch(`https://alfa-leetcode-api.onrender.com/${LEETCODE_USERNAME}`),
+            fetch(`https://alfa-leetcode-api.onrender.com/${LEETCODE_USERNAME}/solved`)
+        ]);
+        if (!profileRes.ok || !solvedRes.ok) throw new Error('LeetCode API failed');
+        const profileData = await profileRes.json();
+        const solvedData = await solvedRes.json();
+
+        // Merge into a single object the renderer expects
+        const data = {
+            ranking: profileData.ranking || 0,
+            totalSolved: solvedData.solvedProblem || 0,
+            totalQuestions: solvedData.totalSubmissionNum?.[0]?.count || 3500,
+            easySolved: solvedData.easySolved || 0,
+            totalEasy: solvedData.totalSubmissionNum?.find(d => d.difficulty === 'Easy')?.count || 850,
+            mediumSolved: solvedData.mediumSolved || 0,
+            totalMedium: solvedData.totalSubmissionNum?.find(d => d.difficulty === 'Medium')?.count || 1800,
+            hardSolved: solvedData.hardSolved || 0,
+            totalHard: solvedData.totalSubmissionNum?.find(d => d.difficulty === 'Hard')?.count || 800,
+            acceptanceRate: solvedData.acSubmissionNum
+                ? ((solvedData.acSubmissionNum[0]?.submissions / Math.max(solvedData.totalSubmissionNum?.[0]?.submissions, 1)) * 100).toFixed(1) + '%'
+                : '—'
+        };
+
         sessionStorage.setItem(cacheKey, JSON.stringify({ ts: Date.now(), data }));
         renderLeetCode(data);
     } catch (e) {
