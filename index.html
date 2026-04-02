@@ -22,12 +22,12 @@
                     colors: {
                         "on-secondary-fixed": "#001f26",
                         "on-tertiary-container": "#3f2300",
-                        "surface-variant": "#2d3449",
+                        "surface-variant": "#1a1c22",
                         "on-error": "#690005",
-                        "surface": "#0b1326",
+                        "surface": "#08090d",
                         "on-primary-container": "#340080",
                         "inverse-surface": "#dae2fd",
-                        "surface-bright": "#31394d",
+                        "surface-bright": "#1e2028",
                         "secondary-container": "#03b5d3",
                         "secondary": "#4cd7f6",
                         "on-tertiary-fixed": "#2c1700",
@@ -35,36 +35,36 @@
                         "on-primary-fixed-variant": "#5516be",
                         "tertiary": "#ffb869",
                         "primary-fixed": "#e9ddff",
-                        "surface-container-highest": "#2d3449",
+                        "surface-container-highest": "#1a1c22",
                         "inverse-primary": "#6d3bd7",
                         "on-secondary-fixed-variant": "#004e5c",
                         "secondary-fixed": "#acedff",
                         "tertiary-fixed-dim": "#ffb869",
                         "on-tertiary-fixed-variant": "#673d00",
                         "on-primary": "#3c0091",
-                        "outline-variant": "#494454",
+                        "outline-variant": "#2a2c34",
                         "secondary-fixed-dim": "#4cd7f6",
                         "on-error-container": "#ffdad6",
-                        "surface-container": "#171f33",
-                        "surface-container-lowest": "#060e20",
+                        "surface-container": "#0e1014",
+                        "surface-container-lowest": "#050507",
                         "tertiary-fixed": "#ffdcbb",
                         "on-tertiary": "#482900",
                         "tertiary-container": "#ca801e",
                         "error-container": "#93000a",
                         "on-secondary-container": "#00424e",
-                        "outline": "#958ea0",
-                        "on-surface-variant": "#cbc3d7",
-                        "surface-container-low": "#131b2e",
-                        "surface-container-high": "#222a3d",
+                        "outline": "#555564",
+                        "on-surface-variant": "#a8a4b4",
+                        "surface-container-low": "#0b0c10",
+                        "surface-container-high": "#141518",
                         "primary": "#d0bcff",
-                        "surface-dim": "#0b1326",
-                        "on-background": "#dae2fd",
-                        "inverse-on-surface": "#283044",
+                        "surface-dim": "#08090d",
+                        "on-background": "#e4e2ec",
+                        "inverse-on-surface": "#1a1c22",
                         "surface-tint": "#d0bcff",
                         "error": "#ffb4ab",
-                        "background": "#0b1326",
+                        "background": "#08090d",
                         "on-secondary": "#003640",
-                        "on-surface": "#dae2fd",
+                        "on-surface": "#e4e2ec",
                         "primary-fixed-dim": "#d0bcff",
                         "on-primary-fixed": "#23005c"
                     },
@@ -83,7 +83,7 @@
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
         /* === PRELOADER === */
-        #preloader{position:fixed;inset:0;z-index:9999;background:#060e20;display:flex;align-items:center;justify-content:center;transition:opacity .6s,visibility .6s}
+        #preloader{position:fixed;inset:0;z-index:9999;background:#050507;display:flex;align-items:center;justify-content:center;transition:opacity .6s,visibility .6s}
         #preloader.loaded{opacity:0;visibility:hidden;pointer-events:none}
         .loader-orb{width:48px;height:48px;border-radius:50%;background:radial-gradient(circle,#d0bcff 0%,#a078ff 60%,transparent 70%);animation:orbPulse 1.2s ease-in-out infinite;box-shadow:0 0 40px #a078ff80}
         @keyframes orbPulse{0%,100%{transform:scale(1);opacity:.8}50%{transform:scale(1.3);opacity:1}}
@@ -95,13 +95,13 @@
         @media(pointer:coarse){#cursor-glow{display:none}}
         /* === ULTRA PREMIUM GLASSMORPHISM === */
         .glass-panel {
-            background: linear-gradient(145deg, rgba(23, 31, 51, 0.4) 0%, rgba(11, 19, 38, 0.8) 100%);
-            backdrop-filter: blur(32px) saturate(150%);
-            -webkit-backdrop-filter: blur(32px) saturate(150%);
-            border: 1px solid rgba(208, 188, 255, 0.1);
-            border-top: 1px solid rgba(255, 255, 255, 0.15);
-            border-left: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4), inset 0 2px 20px rgba(255, 255, 255, 0.02);
+            background: linear-gradient(145deg, rgba(18, 19, 24, 0.5) 0%, rgba(8, 9, 13, 0.85) 100%);
+            backdrop-filter: blur(32px) saturate(130%);
+            -webkit-backdrop-filter: blur(32px) saturate(130%);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-left: 1px solid rgba(255, 255, 255, 0.06);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.03);
             transition: border-color 0.5s, box-shadow 0.5s, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), background 0.5s;
             position: relative;
         }
@@ -109,24 +109,24 @@
             content: '';
             position: absolute;
             inset: -10%;
-            background: linear-gradient(45deg, transparent 40%, rgba(208, 188, 255, 0.1) 45%, rgba(76, 215, 246, 0.1) 50%, transparent 55%);
+            background: linear-gradient(45deg, transparent 40%, rgba(208, 188, 255, 0.06) 45%, rgba(76, 215, 246, 0.06) 50%, transparent 55%);
             transform: translateX(-100%);
             transition: transform 0.8s ease;
             pointer-events: none;
             z-index: 1;
         }
         .glass-panel:hover {
-            border-top-color: rgba(208, 188, 255, 0.4);
-            border-left-color: rgba(76, 215, 246, 0.4);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5), inset 0 2px 30px rgba(255,255,255,0.05), 0 0 40px rgba(208, 188, 255, 0.2);
+            border-top-color: rgba(208, 188, 255, 0.25);
+            border-left-color: rgba(76, 215, 246, 0.2);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.06), 0 0 30px rgba(208, 188, 255, 0.08);
             transform: translateY(-4px) scale(1.02);
-            background: linear-gradient(145deg, rgba(35, 45, 75, 0.5) 0%, rgba(15, 25, 50, 0.8) 100%);
+            background: linear-gradient(145deg, rgba(22, 24, 32, 0.6) 0%, rgba(10, 11, 16, 0.85) 100%);
         }
         .glass-panel:hover::before {
             transform: translateX(100%);
         }
         .hero-gradient {
-            background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(208,188,255,0.12) 0%, rgba(76,215,246,0.04) 40%, transparent 70%);
+            background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(208,188,255,0.06) 0%, rgba(76,215,246,0.02) 40%, transparent 70%);
         }
         .text-gradient {
             background: linear-gradient(135deg, #d0bcff 0%, #a078ff 50%, #4cd7f6 100%);
@@ -151,15 +151,15 @@
             67% { border-radius: 100% 60% 60% 100% / 100% 100% 60% 60%; transform: rotate(240deg) scale(0.9); }
             100% { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; transform: rotate(360deg) scale(1); }
         }
-        .liquid-1 { width: 70vw; height: 70vw; max-width: 800px; max-height: 800px; background: linear-gradient(135deg, rgba(160,120,255,0.5), rgba(76,215,246,0.3)); top: -20%; left: -10%; }
-        .liquid-2 { width: 60vw; height: 60vw; max-width: 700px; max-height: 700px; background: linear-gradient(135deg, rgba(255,184,105,0.2), rgba(255,126,179,0.3)); bottom: -10%; right: -10%; animation-delay: -5s; animation-direction: alternate-reverse; }
-        .liquid-3 { width: 50vw; height: 50vw; max-width: 600px; max-height: 600px; background: linear-gradient(135deg, rgba(208,188,255,0.4), rgba(57,211,83,0.1)); top: 30%; left: 30%; animation-delay: -10s; }
+        .liquid-1 { width: 70vw; height: 70vw; max-width: 800px; max-height: 800px; background: linear-gradient(135deg, rgba(160,120,255,0.15), rgba(76,215,246,0.08)); top: -20%; left: -10%; }
+        .liquid-2 { width: 60vw; height: 60vw; max-width: 700px; max-height: 700px; background: linear-gradient(135deg, rgba(255,184,105,0.06), rgba(255,126,179,0.08)); bottom: -10%; right: -10%; animation-delay: -5s; animation-direction: alternate-reverse; }
+        .liquid-3 { width: 50vw; height: 50vw; max-width: 600px; max-height: 600px; background: linear-gradient(135deg, rgba(208,188,255,0.12), rgba(57,211,83,0.03)); top: 30%; left: 30%; animation-delay: -10s; }
 
         /* === AMBIENT BLOBS === */
         .ambient-blob{position:absolute;border-radius:50%;filter:blur(100px);pointer-events:none;}
-        .blob-1{width:500px;height:500px;background:rgba(160,120,255,0.1);top:10%;left:20%;animation:blobDrift1 25s ease-in-out infinite alternate}
-        .blob-2{width:400px;height:400px;background:rgba(76,215,246,0.1);top:60%;right:10%;animation:blobDrift2 30s ease-in-out infinite alternate}
-        .blob-3{width:350px;height:350px;background:rgba(255,184,105,0.08);top:40%;left:70%;animation:blobDrift3 20s ease-in-out infinite alternate}
+        .blob-1{width:500px;height:500px;background:rgba(160,120,255,0.04);top:10%;left:20%;animation:blobDrift1 25s ease-in-out infinite alternate}
+        .blob-2{width:400px;height:400px;background:rgba(76,215,246,0.04);top:60%;right:10%;animation:blobDrift2 30s ease-in-out infinite alternate}
+        .blob-3{width:350px;height:350px;background:rgba(255,184,105,0.03);top:40%;left:70%;animation:blobDrift3 20s ease-in-out infinite alternate}
         @keyframes blobDrift1{0%{transform:translate(0,0) scale(1)}100%{transform:translate(80px,60px) scale(1.15)}}
         @keyframes blobDrift2{0%{transform:translate(0,0) scale(1)}100%{transform:translate(-60px,-80px) scale(1.1)}}
         @keyframes blobDrift3{0%{transform:translate(0,0) scale(1)}100%{transform:translate(-40px,50px) scale(0.9)}}
@@ -189,8 +189,139 @@
         @keyframes rippleOut{to{transform:scale(4);opacity:0}}
         /* === SECTION DIVIDER === */
         .section-glow-divider{height:1px;background:linear-gradient(90deg,transparent,rgba(208,188,255,.15) 30%,rgba(76,215,246,.15) 70%,transparent);margin:0 auto;max-width:80%}
-        /* === NAV UPGRADES === */
-        nav.scrolled{padding-top:.5rem!important;padding-bottom:.5rem!important;background:rgba(23,31,51,.85)!important;box-shadow:0 8px 32px rgba(0,0,0,.5),0 0 1px rgba(208,188,255,.1)!important}
+        /* === FLOATING ISLAND NAV === */
+        .nav-island {
+            position: fixed;
+            top: 16px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 50;
+            display: flex;
+            align-items: center;
+            gap: 0;
+            padding: 6px 8px;
+            border-radius: 60px;
+            background: rgba(12, 13, 18, 0.75);
+            backdrop-filter: blur(40px) saturate(120%);
+            -webkit-backdrop-filter: blur(40px) saturate(120%);
+            border: 1px solid rgba(255,255,255,0.06);
+            box-shadow: 0 8px 40px rgba(0,0,0,0.6), 0 0 0 0.5px rgba(255,255,255,0.04) inset;
+            transition: all 0.5s cubic-bezier(0.16,1,0.3,1);
+        }
+        .nav-island::before {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            border-radius: inherit;
+            padding: 1px;
+            background: linear-gradient(135deg, rgba(208,188,255,0.2), rgba(76,215,246,0.1), rgba(255,184,105,0.1), rgba(208,188,255,0.15));
+            background-size: 300% 300%;
+            animation: borderGlow 8s ease infinite;
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+            opacity: 0.6;
+            transition: opacity 0.5s;
+        }
+        .nav-island:hover::before { opacity: 1; }
+        @keyframes borderGlow {
+            0%,100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        .nav-island.scrolled {
+            padding: 5px 8px;
+            background: rgba(8, 9, 13, 0.92);
+            box-shadow: 0 12px 48px rgba(0,0,0,0.8), 0 0 0 0.5px rgba(255,255,255,0.05) inset;
+        }
+        /* Nav Logo Pill */
+        .nav-logo-pill {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 14px 6px 6px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .nav-logo-pill:hover { background: rgba(255,255,255,0.04); }
+        /* Nav Links */
+        .nav-link-island {
+            position: relative;
+            padding: 8px 16px;
+            border-radius: 40px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            font-size: 13px;
+            letter-spacing: 0.01em;
+            color: rgba(228, 226, 236, 0.5);
+            text-decoration: none;
+            transition: color 0.3s, background 0.3s;
+            white-space: nowrap;
+        }
+        .nav-link-island:hover {
+            color: rgba(228, 226, 236, 0.9);
+            background: rgba(255,255,255,0.04);
+        }
+        .nav-link-island.active {
+            color: #fff;
+            background: rgba(208, 188, 255, 0.12);
+        }
+        .nav-link-island.active::after {
+            content: '';
+            position: absolute;
+            bottom: 4px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: #d0bcff;
+            box-shadow: 0 0 8px rgba(208,188,255,0.6);
+        }
+        /* Nav Divider */
+        .nav-divider {
+            width: 1px;
+            height: 20px;
+            background: rgba(255,255,255,0.08);
+            margin: 0 4px;
+        }
+        /* Nav Action Buttons */
+        .nav-action-btn {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(228, 226, 236, 0.45);
+            transition: color 0.3s, background 0.3s;
+            cursor: pointer;
+            border: none;
+            background: none;
+        }
+        .nav-action-btn:hover {
+            color: #d0bcff;
+            background: rgba(208, 188, 255, 0.1);
+        }
+        .nav-action-btn .material-symbols-outlined { font-size: 20px; }
+        /* Mobile Menu Btn */
+        .nav-mobile-btn {
+            display: none;
+            width: 34px; height: 34px;
+            border-radius: 50%;
+            align-items: center; justify-content: center;
+            color: rgba(228,226,236,0.6);
+            background: none; border: none; cursor: pointer;
+            transition: color 0.3s, background 0.3s;
+        }
+        .nav-mobile-btn:hover { color: #d0bcff; background: rgba(208,188,255,0.1); }
+        @media (max-width: 768px) {
+            .nav-links-group { display: none !important; }
+            .nav-divider { display: none !important; }
+            .nav-mobile-btn { display: flex; }
+        }
         .nav-indicator{position:absolute;bottom:-2px;height:2px;background:linear-gradient(90deg,#d0bcff,#4cd7f6);border-radius:2px;transition:left .4s cubic-bezier(.25,.46,.45,.94),width .4s cubic-bezier(.25,.46,.45,.94)}
         /* === HERO TEXT STAGGER === */
         .char-reveal{display:inline-block;opacity:0;transform:translateY(20px);animation:charIn .5s cubic-bezier(.16,1,.3,1) forwards}
@@ -241,42 +372,41 @@
     
     <!-- Grain Overlay -->
     <div class="grain-overlay"></div>
-    <!-- TopNavBar -->
-    <nav class="fixed top-0 w-full z-50 bg-[#171f33]/60 backdrop-blur-xl shadow-[0_20px_40px_rgba(0,0,0,0.4)]">
-        <div class="flex justify-between items-center px-8 py-4 max-w-7xl mx-auto">
-            <div class="flex items-center gap-3 group mag-hover cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
-                <div class="relative w-12 h-12 rounded-xl bg-gradient-to-br from-[#d0bcff]/20 to-[#4cd7f6]/10 border border-[#d0bcff]/30 shadow-[0_0_15px_rgba(208,188,255,0.2)] flex items-center justify-center overflow-hidden transition-all duration-500 group-hover:rotate-[15deg] group-hover:scale-110 group-hover:border-[#4cd7f6]/50">
-                    <img src="./logo.png" alt="SAHA Logo" class="absolute inset-0 w-full h-full object-cover z-10" />
-                    <div class="absolute inset-0 bg-gradient-to-tr from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out z-20 pointer-events-none"></div>
-                </div>
-                <div class="flex flex-col justify-center">
-                    <span class="text-xl font-black tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-[#d0bcff] to-[#4cd7f6] font-headline uppercase leading-none">SABARNA</span>
-                    <span class="text-[9px] font-bold text-[#4cd7f6]/70 tracking-[0.25em] leading-none mt-1 uppercase">Portfolio</span>
-                </div>
+    <!-- Floating Island Nav -->
+    <div class="nav-island" id="nav-island">
+        <!-- Logo Pill -->
+        <div class="nav-logo-pill group" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+            <div class="relative w-8 h-8 rounded-full overflow-hidden border border-white/10 transition-all duration-500 group-hover:border-[#d0bcff]/40 group-hover:shadow-[0_0_12px_rgba(208,188,255,0.3)]">
+                <img src="./logo.png" alt="SAHA Logo" class="w-full h-full object-cover" />
             </div>
-            <div class="hidden md:flex items-center space-x-8">
-                <a class="text-[#d0bcff] border-b-2 border-[#d0bcff] pb-1 font-headline font-bold tracking-tight hover:text-[#4cd7f6] transition-all duration-300"
-                    href="#portfolio">Portfolio</a>
-                <a class="text-[#4cd7f6]/70 font-headline font-bold tracking-tight hover:text-[#4cd7f6] transition-all duration-300"
-                    href="#process">Process</a>
-                <a class="text-[#4cd7f6]/70 font-headline font-bold tracking-tight hover:text-[#4cd7f6] transition-all duration-300"
-                    href="#timeline">Timeline</a>
-                <a class="text-[#4cd7f6]/70 font-headline font-bold tracking-tight hover:text-[#4cd7f6] transition-all duration-300"
-                    href="#tech">Tech</a>
-                <a class="text-[#4cd7f6]/70 font-headline font-bold tracking-tight hover:text-[#4cd7f6] transition-all duration-300"
-                    href="#contact">Contact</a>
-            </div>
-            <div class="flex items-center space-x-4">
-                <button id="terminal-btn" class="scale-95 active:scale-90 text-[#d0bcff] hover:text-[#4cd7f6] transition-all" title="Open Terminal (Ctrl+`)">
-                    <span class="material-symbols-outlined" data-icon="terminal">terminal</span>
-                </button>
-                <button class="scale-95 active:scale-90 text-[#d0bcff] hover:text-[#4cd7f6] transition-all" title="View Source on GitHub"
-                    onclick="window.open('https://github.com/Sabarna07-tech','_blank')">
-                    <span class="material-symbols-outlined" data-icon="code">code</span>
-                </button>
-            </div>
+            <span class="text-sm font-bold tracking-tight text-white/90 font-headline hidden sm:inline">SABARNA</span>
         </div>
-    </nav>
+        <!-- Divider -->
+        <div class="nav-divider"></div>
+        <!-- Nav Links -->
+        <div class="nav-links-group" style="display:flex;align-items:center;gap:2px;">
+            <a class="nav-link-island active" href="#portfolio">Portfolio</a>
+            <a class="nav-link-island" href="#process">Process</a>
+            <a class="nav-link-island" href="#timeline">Timeline</a>
+            <a class="nav-link-island" href="#tech">Tech</a>
+            <a class="nav-link-island" href="#contact">Contact</a>
+        </div>
+        <!-- Divider -->
+        <div class="nav-divider"></div>
+        <!-- Action Buttons -->
+        <div style="display:flex;align-items:center;gap:2px;">
+            <button id="terminal-btn" class="nav-action-btn" title="Open Terminal (Ctrl+`)">
+                <span class="material-symbols-outlined" data-icon="terminal">terminal</span>
+            </button>
+            <button class="nav-action-btn" title="View Source on GitHub" onclick="window.open('https://github.com/Sabarna07-tech','_blank')">
+                <span class="material-symbols-outlined" data-icon="code">code</span>
+            </button>
+        </div>
+        <!-- Mobile Hamburger -->
+        <button class="nav-mobile-btn" id="nav-mobile-toggle" aria-label="Menu">
+            <span class="material-symbols-outlined">menu</span>
+        </button>
+    </div>
     <!-- Hero Section -->
     <section class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20" id="hero">
         <div class="absolute inset-0 hero-gradient z-0"></div>
@@ -370,6 +500,9 @@
             </div>
         </div>
     </section>
+
+    <!-- Standalone fractal tree removed — integrated into Timeline -->
+
     <!-- Skills Grid (Bento Style) -->
     <section class="py-32 bg-surface" id="tech">
         <div class="max-w-7xl mx-auto px-8">
@@ -400,16 +533,18 @@
             </div>
         </div>
     </section>
-    <!-- Experience Timeline -->
+    <!-- Experience Timeline — Fractal Tree as Living Centerline -->
     <section class="py-32 bg-surface relative overflow-hidden" id="timeline">
-        <div class="max-w-7xl mx-auto px-8">
-            <h2 class="font-headline text-4xl font-extrabold tracking-tight mb-20 text-center">Professional <span
+        <!-- Fractal Tree Canvas — positioned behind timeline content -->
+        <canvas id="fractal-canvas" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;"></canvas>
+        <!-- Atmospheric glow at the base -->
+        <div class="absolute bottom-0 left-0 right-0 h-40 pointer-events-none z-[1]" style="background:radial-gradient(ellipse 60% 100% at 50% 100%, rgba(160,120,255,0.1) 0%, transparent 70%);"></div>
+        <div class="max-w-7xl mx-auto px-8 relative z-[2]">
+            <h2 class="font-headline text-4xl font-extrabold tracking-tight mb-4 text-center">Professional <span
                     class="text-gradient">Evolution</span></h2>
+            <p class="text-on-surface-variant max-w-xl mx-auto text-center mb-20 text-sm opacity-70">Each branch represents a new chapter — hover to see them sway. Double-click to regenerate.</p>
             <div class="relative max-w-4xl mx-auto">
-                <!-- Vertical Line -->
-                <div
-                    class="absolute left-0 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-primary via-secondary to-transparent -translate-x-1/2">
-                </div>
+                <!-- Old static vertical line removed — the fractal tree trunk IS the centerline -->
                 <div class="space-y-24" id="experience-timeline">
                     <!-- Experience items injected by linkedin.js -->
                     <div class="glass-panel p-6 rounded-lg animate-pulse h-32"></div>
@@ -749,7 +884,7 @@
         </div>
     </section>
     <!-- Footer -->
-    <footer class="w-full py-12 border-t border-[#494454]/20 bg-[#0b1326]">
+    <footer class="w-full py-12 border-t border-[#494454]/20 bg-[#050507]">
         <div
             class="flex flex-col md:flex-row justify-between items-center px-12 space-y-4 md:space-y-0 max-w-7xl mx-auto">
             <p class="font-['Inter'] text-xs tracking-widest uppercase text-gray-500">
@@ -802,14 +937,28 @@
             });
         }
 
-        /* === NAVBAR & PARALLAX SCROLL === */
-        const nav = document.querySelector('nav');
+        /* === FLOATING ISLAND NAV & PARALLAX SCROLL === */
+        const navIsland = document.getElementById('nav-island');
+        const navLinks = document.querySelectorAll('.nav-link-island');
         const parallaxLayers = document.querySelectorAll('.parallax-layer');
         let lastScroll = 0;
         
+        // Active section detection
+        const sectionMap = [{id:'portfolio', el:null},{id:'process', el:null},{id:'timeline', el:null},{id:'tech', el:null},{id:'contact', el:null}];
+        sectionMap.forEach(s => { s.el = document.getElementById(s.id); });
+
         window.addEventListener('scroll', () => {
             const scrollY = window.scrollY;
-            if (nav) nav.classList.toggle('scrolled', scrollY > 60);
+            if (navIsland) navIsland.classList.toggle('scrolled', scrollY > 60);
+
+            // Highlight active nav link
+            let activeId = 'portfolio';
+            sectionMap.forEach(s => {
+                if (s.el && s.el.offsetTop - 200 <= scrollY) activeId = s.id;
+            });
+            navLinks.forEach(link => {
+                link.classList.toggle('active', link.getAttribute('href') === '#' + activeId);
+            });
             
             // Depth & Parallax Scroll Effect
             if (!reducedMotion) {
@@ -841,7 +990,7 @@
 
             // Cards, panels stagger
             document.querySelectorAll('.glass-panel, [class*="grid"] > div').forEach((el, i) => {
-                if (!el.closest('nav') && !el.classList.contains('ambient-blob')) {
+                if (!el.closest('.nav-island') && !el.classList.contains('ambient-blob')) {
                     el.classList.add('sr', 'sr-delay-' + Math.min((i % 4) + 1, 4));
                     srObs.observe(el);
                 }
@@ -857,7 +1006,7 @@
         /* === 3D TILT CARDS === */
         if (!reducedMotion) {
             document.querySelectorAll('.glass-panel').forEach(card => {
-                if (card.closest('nav') || card.closest('#preloader')) return;
+                if (card.closest('.nav-island') || card.closest('#preloader')) return;
                 card.classList.add('tilt-card', 'light-sweep');
                 const shine = document.createElement('div');
                 shine.className = 'tilt-shine';
@@ -951,6 +1100,292 @@
                 if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
             });
         });
+
+        /* ═══════════════════════════════════════════════════════════════════ */
+        /* FRACTAL TREE — LIVING TIMELINE CENTERLINE                          */
+        /* The trunk IS the timeline spine; branches reach toward cards        */
+        /* ═══════════════════════════════════════════════════════════════════ */
+        (function initFractalTree() {
+            const section = document.getElementById('timeline');
+            const canvas  = document.getElementById('fractal-canvas');
+            if (!canvas || !section) return;
+            const ctx = canvas.getContext('2d');
+            let W, H, dpr;
+            let mouseX = 0.5, mouseY = 0.5;
+            let growProgress = 0;
+            let growing = false;
+            let particles = [];
+            let time = 0;
+            let seed = Math.random() * 1000;
+
+            /* ---- helpers ---- */
+            function seededRandom(s) {
+                const x = Math.sin(s) * 43758.5453123;
+                return x - Math.floor(x);
+            }
+
+            /* ---- resize: match canvas to full section ---- */
+            function resize() {
+                const rect = section.getBoundingClientRect();
+                dpr = Math.min(window.devicePixelRatio || 1, 2);
+                W = rect.width;
+                H = rect.height;
+                canvas.width  = W * dpr;
+                canvas.height = H * dpr;
+                canvas.style.width  = W + 'px';
+                canvas.style.height = H + 'px';
+                ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+            }
+            window.addEventListener('resize', resize);
+            resize();
+
+            /* ---- mouse tracking (on section so pointer-events:none on canvas still works) ---- */
+            section.addEventListener('mousemove', e => {
+                const r = section.getBoundingClientRect();
+                mouseX = (e.clientX - r.left) / r.width;
+                mouseY = (e.clientY - r.top)  / r.height;
+            });
+            section.addEventListener('mouseleave', () => { mouseX = 0.5; mouseY = 0.5; });
+            section.addEventListener('dblclick', () => { seed = Math.random() * 1000; growProgress = 0; growing = true; });
+
+            /* ---- particles ---- */
+            function spawnParticle(x, y, hue) {
+                if (particles.length > 120) return;
+                particles.push({
+                    x, y,
+                    vx: (Math.random() - 0.5) * 0.5,
+                    vy: -(Math.random() * 0.5 + 0.15),
+                    life: 1, hue,
+                    size: Math.random() * 2.5 + 1
+                });
+            }
+            function updateParticles() {
+                for (let i = particles.length - 1; i >= 0; i--) {
+                    const p = particles[i];
+                    p.x += p.vx; p.y += p.vy;
+                    p.vy -= 0.001;
+                    p.life -= 0.006;
+                    if (p.life <= 0) { particles.splice(i, 1); continue; }
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.size * p.life, 0, Math.PI * 2);
+                    ctx.fillStyle = `hsla(${p.hue}, 90%, 75%, ${p.life * 0.5})`;
+                    ctx.shadowColor = `hsla(${p.hue}, 100%, 70%, ${p.life * 0.35})`;
+                    ctx.shadowBlur = 10;
+                    ctx.fill();
+                }
+                ctx.shadowBlur = 0;
+            }
+
+            /* ---- VERTICAL TRUNK — acts as timeline spine ---- */
+            function drawTrunk() {
+                const cx = W / 2;
+                const topY   = 100;             // below headline
+                const botY   = H - 40;         // near bottom
+                const trunkH = botY - topY;
+                const visH   = trunkH * growProgress;
+
+                // Main trunk line — soft gradient
+                const grad = ctx.createLinearGradient(cx, botY, cx, botY - visH);
+                grad.addColorStop(0, 'rgba(160, 120, 255, 0.35)');
+                grad.addColorStop(0.5, 'rgba(120, 160, 255, 0.25)');
+                grad.addColorStop(1, 'rgba(60, 220, 240, 0.15)');
+
+                const sway = Math.sin(time * 0.0015) * 2;
+
+                ctx.beginPath();
+                ctx.moveTo(cx, botY);
+                // Organic cubic curve instead of straight line
+                ctx.bezierCurveTo(
+                    cx + sway, botY - visH * 0.33,
+                    cx - sway, botY - visH * 0.66,
+                    cx + sway * 0.5, botY - visH
+                );
+                ctx.strokeStyle = grad;
+                ctx.lineWidth = 3;
+                ctx.lineCap = 'round';
+                ctx.shadowColor = 'rgba(160,120,255,0.3)';
+                ctx.shadowBlur = 16;
+                ctx.stroke();
+                ctx.shadowBlur = 0;
+
+                // Pulsing glow dots along trunk
+                const dotCount = 8;
+                for (let i = 0; i < dotCount; i++) {
+                    const frac = i / (dotCount - 1);
+                    if (frac > growProgress) break;
+                    const dy = botY - trunkH * frac;
+                    const dx = cx + Math.sin(time * 0.0015 + frac * 3) * 1.5;
+                    const pulse = (Math.sin(time * 0.004 + frac * Math.PI * 2) + 1) * 0.5;
+                    const hue = 270 - frac * 90;
+                    ctx.beginPath();
+                    ctx.arc(dx, dy, 2.5 + pulse * 2, 0, Math.PI * 2);
+                    ctx.fillStyle = `hsla(${hue}, 90%, 70%, ${0.25 + pulse * 0.35})`;
+                    ctx.shadowColor = `hsla(${hue}, 100%, 65%, ${0.3 + pulse * 0.3})`;
+                    ctx.shadowBlur = 12;
+                    ctx.fill();
+                }
+                ctx.shadowBlur = 0;
+
+                return { cx, topY, botY, trunkH, sway };
+            }
+
+            /* ---- BRANCHES — grow from trunk points toward sides ---- */
+            const MAX_DEPTH = 9;
+
+            function drawBranch(x1, y1, angle, length, depth, branchSeed) {
+                if (depth > MAX_DEPTH || length < 1.5) return;
+
+                const depthRatio = depth / MAX_DEPTH;
+                if (depthRatio > growProgress) return;
+
+                // Mouse-reactive sway (stronger at tips)
+                const swayIntensity = depth / MAX_DEPTH;
+                const swayX = (mouseX - 0.5) * 0.35 * swayIntensity;
+                const wind  = Math.sin(time * 0.0012 + depth * 0.7 + branchSeed * 0.1) * 0.025;
+                const adjustedAngle = angle + swayX + wind;
+
+                const x2 = x1 + Math.cos(adjustedAngle) * length;
+                const y2 = y1 + Math.sin(adjustedAngle) * length;
+
+                // Color: deep purple at trunk → cyan at tips
+                const hue = 270 - depth * 22;
+                const lightness = 50 + depth * 4;
+                const alpha = Math.max(0.08, 0.7 - depthRatio * 0.55);
+                const lw = Math.max(0.3, (MAX_DEPTH - depth) * 0.9);
+
+                ctx.beginPath();
+                ctx.moveTo(x1, y1);
+                ctx.lineTo(x2, y2);
+                ctx.strokeStyle = `hsla(${hue}, 75%, ${lightness}%, ${alpha})`;
+                ctx.lineWidth = lw;
+                ctx.lineCap = 'round';
+                if (depth < 3) {
+                    ctx.shadowColor = `hsla(${hue}, 100%, 60%, 0.3)`;
+                    ctx.shadowBlur = 10 - depth * 2;
+                }
+                ctx.stroke();
+                ctx.shadowBlur = 0;
+
+                // Particles at tips
+                if (depth >= MAX_DEPTH - 2 && Math.random() < 0.015) {
+                    spawnParticle(x2, y2, hue);
+                }
+
+                // Glowing nodes
+                if (depth > 1 && depth < MAX_DEPTH - 1) {
+                    const puls = Math.sin(time * 0.003 + branchSeed) * 0.3 + 0.3;
+                    ctx.beginPath();
+                    ctx.arc(x2, y2, lw * 0.7, 0, Math.PI * 2);
+                    ctx.fillStyle = `hsla(${hue}, 85%, 68%, ${puls * alpha})`;
+                    ctx.fill();
+                }
+
+                // Recurse: binary branching
+                const rng1 = seededRandom(branchSeed + 1);
+                const rng2 = seededRandom(branchSeed + 2);
+                const spread = 0.4 + rng1 * 0.35;
+                const shrink = 0.6 + rng2 * 0.16;
+                const nextLen = length * shrink;
+
+                drawBranch(x2, y2, adjustedAngle - spread, nextLen, depth + 1, branchSeed * 2 + 1);
+                drawBranch(x2, y2, adjustedAngle + spread, nextLen, depth + 1, branchSeed * 2 + 2);
+
+                // Extra branch for organic density
+                if (depth > 0 && depth < 5 && seededRandom(branchSeed + 7) > 0.65) {
+                    const extra = (seededRandom(branchSeed + 9) - 0.5) * 1.1;
+                    drawBranch(x2, y2, adjustedAngle + extra, nextLen * 0.6, depth + 2, branchSeed * 3);
+                }
+            }
+
+            /* ---- grow branch clusters from trunk at spaced intervals ---- */
+            function drawBranchClusters(cx, topY, botY, trunkH, sway) {
+                // Create branch-origin points along the trunk
+                const branchCount = 10;
+                for (let i = 0; i < branchCount; i++) {
+                    const frac = (i + 1) / (branchCount + 1);  // evenly distributed
+                    if (frac > growProgress) break;
+
+                    const y = botY - trunkH * frac;
+                    const x = cx + Math.sin(time * 0.0015 + frac * 3) * 1.5;  // follow trunk sway
+
+                    const branchSeed = seed + i * 137.5;
+                    const branchLen = 30 + seededRandom(branchSeed + 50) * 50;
+
+                    // Alternate branches left and right (matching timeline card sides)
+                    const isLeft = i % 2 === 0;
+                    const baseAngle = isLeft ? Math.PI + 0.3 + seededRandom(branchSeed) * 0.4
+                                             : -0.3 - seededRandom(branchSeed) * 0.4;
+
+                    // Primary branch
+                    drawBranch(x, y, baseAngle, branchLen, 1, branchSeed);
+
+                    // Secondary smaller branch at slightly different angle
+                    const secondLen = branchLen * 0.6;
+                    const secondAngle = isLeft ? Math.PI + 0.6 + seededRandom(branchSeed + 3) * 0.3
+                                               : -0.6 - seededRandom(branchSeed + 3) * 0.3;
+                    drawBranch(x, y, secondAngle, secondLen, 2, branchSeed + 100);
+                }
+            }
+
+            /* ---- atmospheric root glow at bottom ---- */
+            function drawRootGlow() {
+                const cx = W / 2;
+                const botY = H - 40;
+                const rg = ctx.createRadialGradient(cx, botY, 0, cx, botY, W * 0.3);
+                rg.addColorStop(0, 'rgba(160,120,255,0.07)');
+                rg.addColorStop(0.5, 'rgba(120,80,255,0.03)');
+                rg.addColorStop(1, 'rgba(0,0,0,0)');
+                ctx.fillStyle = rg;
+                ctx.fillRect(0, 0, W, H);
+
+                // Small root-like elements at the base
+                for (let i = 0; i < 5; i++) {
+                    const rootSeed = seed + i * 47;
+                    const rootAngle = Math.PI / 2 - 0.6 + i * 0.3 + seededRandom(rootSeed) * 0.2;
+                    const rootLen = 20 + seededRandom(rootSeed + 1) * 25;
+                    const rootAlpha = 0.12 + seededRandom(rootSeed + 2) * 0.1;
+                    const rx = cx + (i - 2) * 15;
+                    drawBranch(rx, botY + 10, rootAngle, rootLen, 4, rootSeed);
+                }
+            }
+
+            /* ---- main render loop ---- */
+            function render() {
+                time++;
+                ctx.clearRect(0, 0, W, H);
+
+                // Grow animation
+                if (growing && growProgress < 1) {
+                    growProgress += 0.008;    // slower, more dramatic
+                    if (growProgress >= 1) { growProgress = 1; growing = false; }
+                }
+
+                if (growProgress > 0) {
+                    drawRootGlow();
+                    const { cx, topY, botY, trunkH, sway } = drawTrunk();
+                    drawBranchClusters(cx, topY, botY, trunkH, sway);
+                }
+
+                updateParticles();
+                requestAnimationFrame(render);
+            }
+
+            /* ---- scroll-trigger to start growing ---- */
+            const treeObs = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && growProgress === 0) {
+                        growing = true;
+                    }
+                });
+            }, { threshold: 0.15 });
+            treeObs.observe(section);
+
+            // Re-size when timeline content loads (linkedin.js injects cards)
+            const resizeTimer = setInterval(() => { resize(); }, 2000);
+            setTimeout(() => clearInterval(resizeTimer), 15000);
+
+            render();
+        })();
 
     })();
     </script>
