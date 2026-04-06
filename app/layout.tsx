@@ -28,7 +28,7 @@ export default function RootLayout({
         We use suppressHydrationWarning to prevent warnings from some 
         browser extensions modifying the body classes/attributes.
       */}
-      <body className={`${inter.variable} ${montserrat.variable} bg-surface text-on-surface font-body selection:bg-primary/30 antialiased`}>
+      <body className={`${inter.variable} ${montserrat.variable} relative bg-surface text-on-surface font-body selection:bg-primary/30 antialiased`}>
         {/* Animated Background */}
         <BackgroundParticles />
 
