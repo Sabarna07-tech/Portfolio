@@ -44,7 +44,7 @@ export default function Contact() {
           </button>
           
           <a
-            href="mailto:sabarnakolkata@gmail.com"
+            href="mailto:sabarna.saha1308@gmail.com"
             className="w-full md:w-auto px-10 py-4 rounded-xl bg-gradient-to-r from-primary to-secondary text-surface font-bold glow-button transition-transform hover:scale-105 active:scale-95"
           >
             SAY HELLO
