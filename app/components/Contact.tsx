@@ -6,7 +6,7 @@ import { useState } from 'react';
 
 export default function Contact() {
   const [copied, setCopied] = useState(false);
-  const email = 'sabarnakolkata@gmail.com'; // Extracted from implicit links
+  const email = 'sabarna.saha1308@gmail.com'; // Extracted from implicit links
 
   const copyEmail = () => {
     navigator.clipboard.writeText(email);
@@ -17,7 +17,7 @@ export default function Contact() {
   return (
     <section className="py-32 bg-surface-container-low relative" id="contact">
       <div className="absolute inset-0 bg-gradient-to-t from-surface to-transparent pointer-events-none"></div>
-      
+
       <div className="max-w-4xl mx-auto px-8 relative z-10 text-center">
         <ScrollReveal>
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-primary/20 bg-primary/5 text-primary text-xs font-bold uppercase tracking-widest mb-8">
@@ -33,7 +33,7 @@ export default function Contact() {
         </ScrollReveal>
 
         <ScrollReveal delay={0.2} className="flex flex-col md:flex-row items-center justify-center gap-6 mb-20">
-          <button 
+          <button
             onClick={copyEmail}
             className="w-full md:w-auto flex items-center justify-center gap-3 px-8 py-4 rounded-xl bg-surface-container-highest border border-outline-variant/30 hover:border-primary/50 transition-colors group"
           >
@@ -42,7 +42,7 @@ export default function Contact() {
             <div className="w-px h-4 bg-outline-variant/30 mx-2"></div>
             {copied ? <span className="text-xs font-bold text-secondary">COPIED</span> : <Copy className="text-on-surface-variant" size={16} />}
           </button>
-          
+
           <a
             href="mailto:sabarna.saha1308@gmail.com"
             className="w-full md:w-auto px-10 py-4 rounded-xl bg-gradient-to-r from-primary to-secondary text-surface font-bold glow-button transition-transform hover:scale-105 active:scale-95"
@@ -70,7 +70,7 @@ export default function Contact() {
             &copy; {new Date().getFullYear()} Sabarna Saha. Curated natively with Next.js & Tailwind.
           </p>
           <div className="flex gap-6">
-             <a href="#hero" className="text-xs text-on-surface-variant hover:text-primary transition-colors uppercase tracking-widest">Back to top ↑</a>
+            <a href="#hero" className="text-xs text-on-surface-variant hover:text-primary transition-colors uppercase tracking-widest">Back to top ↑</a>
           </div>
         </div>
       </footer>
