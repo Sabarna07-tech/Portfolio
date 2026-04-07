@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import SpotifyNowPlaying from './SpotifyNowPlaying';
 
 const sentence = {
   hidden: { opacity: 1 },
@@ -91,6 +92,16 @@ export default function Hero() {
           >
             GET IN TOUCH
           </a>
+        </motion.div>
+
+        {/* Integration: Spotify Now Playing */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 1.2, ease: [0.19, 1, 0.22, 1] as const }}
+          className="mt-12"
+        >
+          <SpotifyNowPlaying />
         </motion.div>
       </div>
 

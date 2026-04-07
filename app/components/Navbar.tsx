@@ -52,8 +52,8 @@ export default function Navbar() {
         onClick={scrollToTop}
         className="flex items-center gap-2 px-[6px] py-[6px] pr-3.5 rounded-full hover:bg-white/5 transition-colors group"
       >
-        <div className="relative w-8 h-8 rounded-full overflow-hidden border border-white/10 transition-all duration-500 group-hover:border-primary/40 group-hover:shadow-[0_0_12px_rgba(208,188,255,0.3)]">
-          <Image src="/logo.png" alt="SABARNA" fill sizes="32px" className="object-cover" />
+        <div className="relative w-8 h-8 rounded-full overflow-hidden transition-all duration-500 group-hover:shadow-[0_0_12px_rgba(208,188,255,0.3)]">
+          <Image src="/logo.png" alt="SABARNA" fill sizes="32px" className="object-cover mix-blend-screen" />
         </div>
         <span className="text-sm font-bold tracking-tight text-white/90 font-headline hidden sm:inline">SABARNA</span>
       </button>
