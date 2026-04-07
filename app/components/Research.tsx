@@ -36,7 +36,7 @@ const publications: Publication[] = [
 
 export default function Research() {
   return (
-    <section className="py-32 bg-surface" id="publications">
+    <section className="py-32 mt-12 bg-surface" id="publications">
       <div className="max-w-7xl mx-auto px-8">
         <ScrollReveal>
           <div className="max-w-3xl mb-16">
