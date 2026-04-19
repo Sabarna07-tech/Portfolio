@@ -22,9 +22,9 @@ export default function ScrollReveal({
   delay = 0,
   className = '',
   duration = 0.6,
-  distance = 40,
-  scale = 0.95,
-  blur = true
+  distance = 30,
+  scale,
+  blur = false
 }: ScrollRevealProps) {
   const shouldReduceMotion = useReducedMotion();
   const MotionTag = motion[as as keyof typeof motion] as any;
@@ -53,26 +53,32 @@ export default function ScrollReveal({
 
   const offset = directionOffsets[direction] || directionOffsets.none;
 
+  // Only use transform + opacity (GPU-composited). 
+  // Avoid filter: blur() during scroll — it forces rasterization on every frame.
+  const initial: Record<string, any> = {
+    opacity: 0,
+    ...offset,
+  };
+  const animate: Record<string, any> = {
+    opacity: 1,
+    x: 0,
+    y: 0,
+  };
+
+  if (scale !== undefined) {
+    initial.scale = scale;
+    animate.scale = 1;
+  }
+
   return (
     <MotionTag
-      initial={{ 
-        opacity: 0, 
-        scale,
-        filter: blur ? 'blur(8px)' : 'blur(0px)',
-        ...offset 
-      }}
-      whileInView={{ 
-        opacity: 1, 
-        scale: 1,
-        filter: 'blur(0px)',
-        x: 0, 
-        y: 0 
-      }}
-      viewport={{ once: true, margin: "-50px" }}
+      initial={initial}
+      whileInView={animate}
+      viewport={{ once: true, margin: "-80px" }}
       transition={{ 
         duration, 
         delay, 
-        ease: [0.19, 1, 0.22, 1] // ease-out-expo matching global CSS
+        ease: [0.19, 1, 0.22, 1]
       }}
       className={className}
     >

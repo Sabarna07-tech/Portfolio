@@ -36,7 +36,7 @@ export default function RootLayout({
         <ScrollProgress />
 
         {/* Grain Overlay */}
-        <div className="grain-overlay mix-blend-overlay"></div>
+        <div className="grain-overlay"></div>
         
         {/* Navigation */}
         <Navbar />

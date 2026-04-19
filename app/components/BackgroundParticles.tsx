@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useCallback } from 'react';
 
 interface Particle {
   x: number;
@@ -12,114 +12,121 @@ interface Particle {
 
 export default function BackgroundParticles() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const particlesRef = useRef<Particle[]>([]);
+  const animationFrameRef = useRef<number>(0);
+  const dimensionsRef = useRef({ w: 0, h: 0 });
+
+  // Reduced from 60 → 35 particles; connection distance 150 → 120
+  const PARTICLE_COUNT = 35;
+  const CONNECTION_DIST_SQ = 120 * 120; // pre-squared to avoid sqrt
+
+  const initParticles = useCallback(() => {
+    const { w, h } = dimensionsRef.current;
+    const particles: Particle[] = [];
+    for (let i = 0; i < PARTICLE_COUNT; i++) {
+      particles.push({
+        x: Math.random() * w,
+        y: Math.random() * h,
+        vx: (Math.random() - 0.5) * 0.3,
+        vy: (Math.random() - 0.5) * 0.3,
+        size: Math.random() * 1.5 + 0.5,
+      });
+    }
+    particlesRef.current = particles;
+  }, []);
 
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext('2d', { alpha: true });
     if (!ctx) return;
 
-    let animationFrameId: number;
-    let particles: Particle[] = [];
-    const particleCount = 60; // Keep it low for high performance
-    const connectionDistance = 150;
-
     const resize = () => {
-      // Use logical size and devicePixelRatio for crispness
-      const dpr = window.devicePixelRatio || 1;
-      canvas.width = window.innerWidth * dpr;
-      canvas.height = window.innerHeight * dpr;
-      ctx.scale(dpr, dpr);
-      canvas.style.width = `${window.innerWidth}px`;
-      canvas.style.height = `${window.innerHeight}px`;
+      const dpr = Math.min(window.devicePixelRatio || 1, 2); // cap at 2x
+      const w = window.innerWidth;
+      const h = window.innerHeight;
+      canvas.width = w * dpr;
+      canvas.height = h * dpr;
+      canvas.style.width = `${w}px`;
+      canvas.style.height = `${h}px`;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      dimensionsRef.current = { w, h };
     };
 
-    const initParticles = () => {
-      particles = [];
-      const width = window.innerWidth;
-      const height = window.innerHeight;
-      
-      for (let i = 0; i < particleCount; i++) {
-        particles.push({
-          x: Math.random() * width,
-          y: Math.random() * height,
-          vx: (Math.random() - 0.5) * 0.5, // Slow movement
-          vy: (Math.random() - 0.5) * 0.5,
-          size: Math.random() * 2 + 1,
-        });
-      }
-    };
+    resize();
+    initParticles();
 
     const draw = () => {
-      const width = window.innerWidth;
-      const height = window.innerHeight;
+      const { w, h } = dimensionsRef.current;
+      const particles = particlesRef.current;
 
-      // Clear the canvas totally (transparent background)
-      ctx.clearRect(0, 0, width, height);
+      ctx.clearRect(0, 0, w, h);
 
-      // Update and draw particles
-      ctx.fillStyle = 'rgba(208, 188, 255, 0.5)'; // Primary color faded
-
-      for (let i = 0; i < particleCount; i++) {
+      // Batch particle dots
+      ctx.fillStyle = 'rgba(208, 188, 255, 0.4)';
+      ctx.beginPath();
+      for (let i = 0; i < particles.length; i++) {
         const p = particles[i];
-
-        // Move
         p.x += p.vx;
         p.y += p.vy;
-
-        // Bounce
-        if (p.x < 0 || p.x > width) p.vx *= -1;
-        if (p.y < 0 || p.y > height) p.vy *= -1;
-
-        // Draw particle
-        ctx.beginPath();
+        if (p.x < 0 || p.x > w) p.vx *= -1;
+        if (p.y < 0 || p.y > h) p.vy *= -1;
+        ctx.moveTo(p.x + p.size, p.y);
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fill();
+      }
+      ctx.fill();
 
-        // Connect particles
-        for (let j = i + 1; j < particleCount; j++) {
-          const p2 = particles[j];
-          const dx = p.x - p2.x;
-          const dy = p.y - p2.y;
+      // Batch lines — single path, avoid sqrt
+      ctx.lineWidth = 0.5;
+      for (let i = 0; i < particles.length; i++) {
+        const pi = particles[i];
+        for (let j = i + 1; j < particles.length; j++) {
+          const pj = particles[j];
+          const dx = pi.x - pj.x;
+          const dy = pi.y - pj.y;
           const distSq = dx * dx + dy * dy;
-
-          if (distSq < connectionDistance * connectionDistance) {
-            const distance = Math.sqrt(distSq);
-            const opacity = 1 - distance / connectionDistance;
-
+          if (distSq < CONNECTION_DIST_SQ) {
+            // Fast approximate opacity without sqrt
+            const opacity = (1 - distSq / CONNECTION_DIST_SQ) * 0.15;
+            ctx.strokeStyle = `rgba(76, 215, 246, ${opacity})`;
             ctx.beginPath();
-            ctx.strokeStyle = `rgba(76, 215, 246, ${opacity * 0.2})`; // Secondary color highly transparent
-            ctx.lineWidth = 1;
-            ctx.moveTo(p.x, p.y);
-            ctx.lineTo(p2.x, p2.y);
+            ctx.moveTo(pi.x, pi.y);
+            ctx.lineTo(pj.x, pj.y);
             ctx.stroke();
           }
         }
       }
 
-      animationFrameId = requestAnimationFrame(draw);
+      animationFrameRef.current = requestAnimationFrame(draw);
     };
 
-    window.addEventListener('resize', () => {
-      resize();
-      initParticles();
-    });
-
-    resize();
-    initParticles();
     draw();
 
-    return () => {
-      window.removeEventListener('resize', resize);
-      cancelAnimationFrame(animationFrameId);
+    // Debounced resize
+    let resizeTimer: ReturnType<typeof setTimeout>;
+    const handleResize = () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        resize();
+        initParticles();
+      }, 200);
     };
-  }, []);
+
+    window.addEventListener('resize', handleResize, { passive: true });
+
+    return () => {
+      cancelAnimationFrame(animationFrameRef.current);
+      window.removeEventListener('resize', handleResize);
+      clearTimeout(resizeTimer);
+    };
+  }, [initParticles]);
 
   return (
-    <canvas 
-      ref={canvasRef} 
-      className="fixed inset-0 pointer-events-none z-[0] opacity-60 mix-blend-screen"
+    <canvas
+      ref={canvasRef}
+      className="fixed inset-0 pointer-events-none z-[0] opacity-40"
+      aria-hidden="true"
     />
   );
 }
