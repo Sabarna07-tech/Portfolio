@@ -46,26 +46,26 @@ const awards = [
 
 export default function Milestones() {
   return (
-    <section className="py-24 bg-surface" id="milestones">
-      <div className="max-w-7xl mx-auto px-8 relative z-10">
+    <section className="py-12 sm:py-16 md:py-24 bg-surface" id="milestones">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 relative z-10">
         
         {/* Education Section */}
-        <div className="mb-32">
+        <div className="mb-16 sm:mb-24 md:mb-32">
           <ScrollReveal>
-            <div className="flex items-center gap-4 mb-16" id="education">
-              <h3 className="font-headline font-extrabold flex items-center text-3xl">
-                <GraduationCap className="text-tertiary mr-3 w-8 h-8" /> Education
+            <div className="flex items-center gap-3 sm:gap-4 mb-10 sm:mb-12 md:mb-16" id="education">
+              <h3 className="font-headline font-extrabold flex items-center text-xl sm:text-2xl md:text-3xl">
+                <GraduationCap className="text-tertiary mr-2 sm:mr-3 w-6 h-6 sm:w-8 sm:h-8" /> Education
               </h3>
               <div className="flex-grow h-px bg-gradient-to-r from-outline-variant/50 to-transparent"></div>
             </div>
           </ScrollReveal>
           
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
             {education.map((edu, i) => (
               <TiltCard key={i}>
                 <ScrollReveal delay={i * 0.1} className="h-full">
-                  <div className="glass-panel p-8 rounded-2xl h-full border hover:border-tertiary/50 transition-colors">
-                    <div className="flex justify-between items-start mb-4">
+                  <div className="glass-panel p-5 sm:p-6 md:p-8 rounded-2xl h-full border hover:border-tertiary/50 transition-colors">
+                    <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-3 sm:mb-4 gap-1 sm:gap-0">
                       <h4 className="font-headline font-bold text-xl">{edu.school}</h4>
                       {edu.start && <span className="text-xs font-bold text-tertiary">{edu.start} — {edu.end}</span>}
                     </div>
@@ -88,23 +88,23 @@ export default function Milestones() {
         </div>
 
         {/* Certifications & Awards Split */}
-        <div className="grid lg:grid-cols-12 gap-16">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 md:gap-16">
           
           {/* Certifications */}
           <div className="lg:col-span-8">
             <ScrollReveal>
-              <div className="flex items-center gap-4 mb-12" id="certifications">
-                <h3 className="font-headline font-extrabold flex items-center text-3xl">
-                  <BadgeCheck className="text-primary mr-3 w-8 h-8" /> Credentials
+              <div className="flex items-center gap-3 sm:gap-4 mb-8 sm:mb-10 md:mb-12" id="certifications">
+                <h3 className="font-headline font-extrabold flex items-center text-xl sm:text-2xl md:text-3xl">
+                  <BadgeCheck className="text-primary mr-2 sm:mr-3 w-6 h-6 sm:w-8 sm:h-8" /> Credentials
                 </h3>
               </div>
             </ScrollReveal>
 
-            <div className="grid md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
               {certifications.map((cert, i) => (
                 <TiltCard key={i}>
                   <ScrollReveal delay={0.05 * (i % 4)} className="h-full">
-                    <div className="glass-panel p-5 rounded-xl border border-outline-variant/10 hover:border-primary/40 transition-colors h-full flex flex-col justify-between">
+                    <div className="glass-panel p-4 sm:p-5 rounded-xl border border-outline-variant/10 hover:border-primary/40 transition-colors h-full flex flex-col justify-between">
                       <h5 className="font-bold text-sm leading-snug mb-4">{cert.name}</h5>
                       <div className="flex justify-between items-end">
                         <span className="text-xs text-on-surface-variant">{cert.issuer}</span>
@@ -120,14 +120,14 @@ export default function Milestones() {
           {/* Awards */}
           <div className="lg:col-span-4">
             <ScrollReveal>
-              <div className="flex items-center gap-4 mb-12" id="awards">
-                <h3 className="font-headline font-extrabold flex items-center text-3xl">
-                  <Award className="text-secondary mr-3 w-8 h-8" /> Honors
+              <div className="flex items-center gap-3 sm:gap-4 mb-8 sm:mb-10 md:mb-12" id="awards">
+                <h3 className="font-headline font-extrabold flex items-center text-xl sm:text-2xl md:text-3xl">
+                  <Award className="text-secondary mr-2 sm:mr-3 w-6 h-6 sm:w-8 sm:h-8" /> Honors
                 </h3>
               </div>
             </ScrollReveal>
 
-            <div className="space-y-6">
+            <div className="space-y-4 sm:space-y-6">
               {awards.map((award, i) => (
                 <TiltCard key={i}>
                   <ScrollReveal delay={0.1}>

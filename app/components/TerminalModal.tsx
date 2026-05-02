@@ -98,7 +98,7 @@ export default function TerminalModal() {
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-[999] flex items-center justify-center p-4">
+        <div className="fixed inset-0 z-[999] flex items-end sm:items-center justify-center p-2 sm:p-4">
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -112,7 +112,7 @@ export default function TerminalModal() {
             animate={{ scale: 1, y: 0, opacity: 1 }}
             exit={{ scale: 0.95, y: 20, opacity: 0 }}
             transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-            className={`relative w-full max-w-3xl h-[60vh] rounded-xl flex flex-col border overflow-hidden ${getThemeClasses()}`}
+            className={`relative w-full max-w-3xl h-[75vh] sm:h-[65vh] md:h-[60vh] rounded-xl flex flex-col border overflow-hidden ${getThemeClasses()}`}
             onClick={() => inputRef.current?.focus()}
           >
             {/* Header */}
@@ -127,7 +127,7 @@ export default function TerminalModal() {
             </div>
 
             {/* Output */}
-            <div className="flex-1 overflow-y-auto p-4 font-mono text-sm leading-loose no-scrollbar">
+            <div className="flex-1 overflow-y-auto p-3 sm:p-4 font-mono text-xs sm:text-sm leading-loose no-scrollbar">
               {history.map((line, i) => (
                 <div key={i} className="whitespace-pre-wrap">{line}</div>
               ))}
@@ -135,7 +135,7 @@ export default function TerminalModal() {
             </div>
 
             {/* Input Row */}
-            <div className={`flex items-center p-4 bg-black/20 border-t ${theme === 'cyber' ? 'border-[#4cd7f6]/20' : 'border-[#00ff41]/20'}`}>
+            <div className={`flex items-center p-3 sm:p-4 bg-black/20 border-t ${theme === 'cyber' ? 'border-[#4cd7f6]/20' : 'border-[#00ff41]/20'}`}>
               <span className="mr-3">❯</span>
               <input
                 ref={inputRef}
@@ -143,7 +143,7 @@ export default function TerminalModal() {
                 value={inputVal}
                 onChange={(e) => setInputVal(e.target.value)}
                 onKeyDown={handleInputDown}
-                className="flex-1 bg-transparent border-none outline-none font-mono text-sm w-full focus:ring-0"
+                className="flex-1 bg-transparent border-none outline-none font-mono text-xs sm:text-sm w-full focus:ring-0"
                 placeholder="type a command..."
                 spellCheck={false}
                 autoFocus

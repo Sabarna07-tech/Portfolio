@@ -36,11 +36,11 @@ const publications: Publication[] = [
 
 export default function Research() {
   return (
-    <section className="py-32 mt-12 bg-surface" id="publications">
-      <div className="max-w-7xl mx-auto px-8">
+    <section className="py-16 sm:py-24 md:py-32 mt-6 sm:mt-8 md:mt-12 bg-surface" id="publications">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
         <ScrollReveal>
-          <div className="max-w-3xl mb-16">
-            <h2 className="font-headline text-4xl font-extrabold tracking-tight mb-4">
+          <div className="max-w-3xl mb-10 sm:mb-12 md:mb-16">
+            <h2 className="font-headline text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight mb-3 sm:mb-4">
               Research <span className="text-gradient">&amp; Publications</span>
             </h2>
             <p className="text-on-surface-variant text-sm md:text-base">
@@ -49,7 +49,7 @@ export default function Research() {
           </div>
         </ScrollReveal>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
           {publications.map((item, index) => {
             const isFeatured = index === 0;
 
@@ -59,7 +59,7 @@ export default function Research() {
                 delay={0.08 * index}
                 className={isFeatured ? 'md:col-span-2 xl:col-span-2' : ''}
               >
-                <article className="glass-panel rounded-2xl p-7 md:p-8 relative h-full group border border-outline-variant/30">
+                <article className="glass-panel rounded-2xl p-5 sm:p-7 md:p-8 relative h-full group border border-outline-variant/30">
                   <div className="absolute inset-0 bg-gradient-to-br from-primary/8 via-transparent to-secondary/8 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
                   <div className="relative z-10 flex flex-col h-full">
@@ -82,7 +82,7 @@ export default function Research() {
                       )}
                     </div>
 
-                    <h3 className="font-headline text-2xl font-black tracking-tight mb-4 text-on-surface group-hover:text-primary transition-colors">
+                    <h3 className="font-headline text-lg sm:text-xl md:text-2xl font-black tracking-tight mb-3 sm:mb-4 text-on-surface group-hover:text-primary transition-colors">
                       {item.title}
                     </h3>
 

@@ -63,15 +63,15 @@ export default function Timeline() {
   const lineHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   return (
-    <section className="py-32 bg-surface relative overflow-hidden" id="timeline">
-      <div className="max-w-7xl mx-auto px-8 relative z-[2]">
+    <section className="py-16 sm:py-24 md:py-32 bg-surface relative overflow-hidden" id="timeline">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 relative z-[2]">
         <ScrollReveal>
-          <h2 className="font-headline text-4xl font-extrabold tracking-tight mb-4 text-center">
+          <h2 className="font-headline text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight mb-4 text-center">
             Professional <span className="text-gradient">Evolution</span>
           </h2>
         </ScrollReveal>
 
-        <div ref={containerRef} className="relative max-w-4xl mx-auto mt-20">
+        <div ref={containerRef} className="relative max-w-4xl mx-auto mt-12 sm:mt-16 md:mt-20">
           {/* Vertical timeline outline line (static bg) */}
           <div className="absolute left-4 md:left-1/2 transform -translate-x-1/2 w-[2px] h-full bg-outline-variant/20"></div>
           
@@ -81,7 +81,7 @@ export default function Timeline() {
             className="absolute left-4 md:left-1/2 transform -translate-x-1/2 w-[2px] bg-gradient-to-b from-primary via-secondary to-tertiary shadow-[0_0_15px_rgba(208,188,255,0.5)] origin-top"
           ></motion.div>
           
-          <div className="space-y-24">
+          <div className="space-y-12 sm:space-y-16 md:space-y-24">
             {experience.map((exp, i) => {
               const colorBase = colors[i % colors.length];
               const glow = glowColors[i % glowColors.length];
@@ -93,10 +93,10 @@ export default function Timeline() {
               const bgOpacityClass = colorBase === 'primary' ? 'bg-primary/10' : colorBase === 'secondary' ? 'bg-secondary/10' : 'bg-tertiary/10';
 
               return (
-                <div key={exp.title + i} className="relative flex flex-col md:flex-row md:justify-between items-start md:items-center pl-12 md:pl-0">
+                <div key={exp.title + i} className="relative flex flex-col md:flex-row md:justify-between items-start md:items-center pl-10 sm:pl-12 md:pl-0">
                   {/* Center Dot */}
                   <div 
-                    className={`absolute left-4 md:left-1/2 w-4 h-4 ${bgColorClass} border-4 border-surface rounded-full -translate-x-1/2 z-10`}
+                    className={`absolute left-4 md:left-1/2 w-3 h-3 sm:w-4 sm:h-4 ${bgColorClass} border-[3px] sm:border-4 border-surface rounded-full -translate-x-1/2 z-10`}
                     style={{ boxShadow: `0 0 15px ${glow}` }}
                   ></div>
 
@@ -119,7 +119,7 @@ export default function Timeline() {
                   >
                     <p className={`md:hidden text-xs font-bold ${textColorClass} mb-2`}>{exp.start} — {exp.end}</p>
                     
-                    <div className={`glass-panel p-6 rounded-lg transform hover:-translate-y-1 transition-transform ${isAlt ? 'md:text-right' : 'text-left'}`}>
+                    <div className={`glass-panel p-4 sm:p-5 md:p-6 rounded-lg transform hover:-translate-y-1 transition-transform ${isAlt ? 'md:text-right' : 'text-left'}`}>
                       <p className="md:hidden font-headline font-black text-lg mb-1">{exp.title}</p>
                       <p className="md:hidden text-on-surface-variant text-xs mb-3">{exp.company}</p>
                       

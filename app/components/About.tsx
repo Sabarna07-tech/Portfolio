@@ -4,8 +4,8 @@ import { Layers, Zap } from 'lucide-react';
 
 export default function About() {
   return (
-    <section className="py-32 bg-surface-container-low relative" id="process">
-      <div className="max-w-7xl mx-auto px-8 grid md:grid-cols-2 gap-16 items-center">
+    <section className="py-16 sm:py-24 md:py-32 bg-surface-container-low relative" id="process">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 grid md:grid-cols-2 gap-8 md:gap-16 items-center">
         
         {/* Left Side: Image & Stats */}
         <ScrollReveal direction="left" className="relative">
@@ -22,7 +22,7 @@ export default function About() {
           
           {/* Floating Detail Card */}
           <div
-            className="absolute -bottom-8 -right-8 glass-panel p-6 rounded-xl hidden lg:block transform hover:-translate-y-2 transition-transform shadow-2xl"
+            className="absolute -bottom-6 -right-6 md:-bottom-8 md:-right-8 glass-panel p-4 md:p-6 rounded-xl hidden md:block transform hover:-translate-y-2 transition-transform shadow-2xl"
           >
             <p className="text-primary font-headline text-3xl font-black">9+</p>
             <p className="text-xs uppercase tracking-widest text-on-surface-variant">
@@ -34,12 +34,12 @@ export default function About() {
         {/* Right Side: Content */}
         <div>
           <ScrollReveal delay={0.1}>
-            <h2 className="font-headline text-4xl font-extrabold text-on-surface mb-8 tracking-tight">
+            <h2 className="font-headline text-2xl sm:text-3xl md:text-4xl font-extrabold text-on-surface mb-6 sm:mb-8 tracking-tight">
               The Visionary Process
             </h2>
           </ScrollReveal>
           
-          <ScrollReveal delay={0.2} className="space-y-6 text-on-surface-variant text-lg leading-relaxed">
+          <ScrollReveal delay={0.2} className="space-y-4 sm:space-y-6 text-on-surface-variant text-sm sm:text-base md:text-lg leading-relaxed">
             <p>
               Design is not just what it looks like; it's how it moves, breathes, and interacts. I approach
               every project as a <span className="text-primary font-semibold">Digital Curator</span>, meticulously
@@ -52,7 +52,7 @@ export default function About() {
             </p>
           </ScrollReveal>
           
-          <ScrollReveal delay={0.3} className="mt-12 grid grid-cols-2 gap-8">
+          <ScrollReveal delay={0.3} className="mt-8 sm:mt-12 grid grid-cols-2 gap-4 sm:gap-8">
             <div>
               <Layers className="text-secondary mb-4 w-8 h-8" />
               <h4 className="font-headline font-bold text-on-surface mb-2">Systems Design</h4>

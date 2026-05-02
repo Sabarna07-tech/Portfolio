@@ -64,14 +64,14 @@ export default async function Skills() {
   const techStack = data?.techStack?.length ? data.techStack : FALLBACK_STACK;
 
   return (
-    <section className="py-32 bg-surface" id="tech">
-      <div className="max-w-7xl mx-auto px-8">
-        <ScrollReveal className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
+    <section className="py-16 sm:py-24 md:py-32 bg-surface" id="tech">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+        <ScrollReveal className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 sm:mb-16 md:mb-20 gap-4 sm:gap-8">
           <div>
-            <h2 className="font-headline text-4xl font-extrabold tracking-tight mb-4">
+            <h2 className="font-headline text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight mb-2 sm:mb-4">
               Tech Stack <span className="text-secondary">&amp;</span> Arsenal
             </h2>
-            <p className="text-on-surface-variant">A curated collection of tools I master to bring ideas to life.</p>
+            <p className="text-on-surface-variant text-sm sm:text-base">A curated collection of tools I master to bring ideas to life.</p>
           </div>
           <div className="flex space-x-2 pb-2">
             <div className="w-12 h-1 bg-primary"></div>
@@ -79,18 +79,18 @@ export default async function Skills() {
           </div>
         </ScrollReveal>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
           {techStack.map((tech: TechStackItem, index: number) => {
             if (index === 0) {
               return (
-                <TiltCard key={tech.name} className="col-span-2 row-span-2">
-                  <ScrollReveal delay={0.1} className="w-full h-full glass-panel p-10 rounded-xl relative overflow-hidden group">
+                <TiltCard key={tech.name} className="sm:col-span-2 sm:row-span-2">
+                  <ScrollReveal delay={0.1} className="w-full h-full glass-panel p-6 sm:p-8 md:p-10 rounded-xl relative overflow-hidden group">
                     <div className="absolute top-0 right-0 p-8">
                       {getLargeIconForTech(tech.name)}
                     </div>
-                    <h3 className="font-headline text-3xl font-black mb-6 mt-4 relative z-10 text-white">{tech.name} Mastery</h3>
-                    <p className="text-on-surface-variant leading-relaxed max-w-sm relative z-10 font-medium">Primary focus area across most open source contributions and architectural designs.</p>
-                    <div className="mt-12 relative z-10">
+                    <h3 className="font-headline text-xl sm:text-2xl md:text-3xl font-black mb-4 sm:mb-6 mt-2 sm:mt-4 relative z-10 text-white">{tech.name} Mastery</h3>
+                    <p className="text-on-surface-variant leading-relaxed max-w-sm relative z-10 font-medium text-sm sm:text-base">Primary focus area across most open source contributions and architectural designs.</p>
+                    <div className="mt-6 sm:mt-8 md:mt-12 relative z-10">
                       <span className="px-5 py-2.5 bg-surface-container-highest text-primary/90 border border-primary/20 rounded-full text-xs font-bold uppercase tracking-widest">
                         {tech.count} Repositories
                       </span>
@@ -102,7 +102,7 @@ export default async function Skills() {
             
             return (
               <TiltCard key={tech.name}>
-                <ScrollReveal delay={0.1 + index * 0.1} className="h-full glass-panel p-8 rounded-xl hover:bg-surface-container-high transition-colors group">
+                <ScrollReveal delay={0.1 + index * 0.1} className="h-full glass-panel p-5 sm:p-6 md:p-8 rounded-xl hover:bg-surface-container-high transition-colors group">
                   {getIconForTech(tech.name)}
                   <h4 className="font-headline font-bold text-on-surface mb-2">{tech.name}</h4>
                   <p className="text-sm text-on-surface-variant leading-relaxed">Frequently utilized in {tech.count} recent projects.</p>
@@ -113,15 +113,15 @@ export default async function Skills() {
         </div>
 
         {/* Domain Expertise (Manual Skills) */}
-        <div className="mt-32">
+        <div className="mt-16 sm:mt-24 md:mt-32">
           <ScrollReveal>
-            <h3 className="font-headline text-3xl font-extrabold tracking-tight mb-12 flex items-center gap-4">
+            <h3 className="font-headline text-xl sm:text-2xl md:text-3xl font-extrabold tracking-tight mb-8 sm:mb-12 flex items-center gap-3 sm:gap-4">
               Domain <span className="text-primary">Expertise</span>
               <div className="flex-grow h-px bg-gradient-to-r from-outline-variant/30 to-transparent"></div>
             </h3>
           </ScrollReveal>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
             {DOMAIN_EXPERTISE.map((domain, idx) => (
               <TiltCard key={idx}>
                 <ScrollReveal delay={0.1 * idx} className="h-full glass-panel p-6 rounded-xl hover:border-primary/20 transition-colors">

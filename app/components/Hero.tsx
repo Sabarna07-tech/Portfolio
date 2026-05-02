@@ -25,23 +25,23 @@ const letter = {
 
 export default function Hero() {
   return (
-    <section id="hero" className="relative min-h-screen flex items-center justify-center pt-20 overflow-visible">
+    <section id="hero" className="relative min-h-screen flex items-center justify-center pt-16 pb-24 sm:pt-20 sm:pb-20 overflow-visible">
       {/* Dynamic Background Glow */}
       <div className="absolute inset-0 hero-gradient z-0 pointer-events-none"></div>
       
       {/* Animated Core Element */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] opacity-10 pointer-events-none mix-blend-screen">
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[280px] h-[280px] sm:w-[400px] sm:h-[400px] md:w-[500px] md:h-[500px] opacity-10 pointer-events-none mix-blend-screen">
         <div className="w-full h-full rounded-full border border-primary/20 animate-[spin_25s_linear_infinite]"></div>
-        <div className="absolute inset-10 rounded-full border border-secondary/15 animate-[spin_20s_linear_infinite_reverse]"></div>
-        <div className="absolute inset-20 rounded-full border border-primary-container/10 animate-[spin_30s_linear_infinite]"></div>
+        <div className="absolute inset-6 sm:inset-8 md:inset-10 rounded-full border border-secondary/15 animate-[spin_20s_linear_infinite_reverse]"></div>
+        <div className="absolute inset-12 sm:inset-16 md:inset-20 rounded-full border border-primary-container/10 animate-[spin_30s_linear_infinite]"></div>
       </div>
 
-      <div className="relative z-10 text-center px-6 max-w-5xl mx-auto flex flex-col items-center">
+      <div className="relative z-10 text-center px-4 sm:px-6 max-w-5xl mx-auto flex flex-col items-center">
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1, ease: 'easeOut' }}
-          className="font-headline text-secondary tracking-[0.4em] uppercase text-xs mb-6"
+          className="font-headline text-secondary tracking-[0.2em] sm:tracking-[0.4em] uppercase text-[10px] sm:text-xs mb-4 sm:mb-6"
         >
           AI/ML Engineer · Power Engineering
         </motion.p>
@@ -50,7 +50,7 @@ export default function Hero() {
           variants={sentence}
           initial="hidden"
           animate="visible"
-          className="font-headline text-5xl md:text-8xl font-black text-on-surface tracking-tighter leading-none mb-8 flex flex-wrap justify-center gap-[0.2em]"
+          className="font-headline text-4xl sm:text-5xl md:text-8xl font-black text-on-surface tracking-tighter leading-none mb-6 sm:mb-8 flex flex-wrap justify-center gap-[0.15em] sm:gap-[0.2em]"
         >
           <span className="flex">
             {'SABARNA'.split('').map((char, index) => (
@@ -68,7 +68,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.8, ease: 'easeOut' }}
-          className="max-w-2xl mx-auto text-lg md:text-xl text-on-surface-variant mb-12 font-light leading-relaxed"
+          className="max-w-2xl mx-auto text-sm sm:text-lg md:text-xl text-on-surface-variant mb-8 sm:mb-12 font-light leading-relaxed px-2 sm:px-0"
         >
           AI/ML Engineer with hands-on experience in RAG, deep learning, and NLP.
           Currently pursuing Power Engineering at Jadavpur University while building intelligent systems.
@@ -78,16 +78,16 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1, ease: [0.19, 1, 0.22, 1] as const }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-6"
+          className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 w-full sm:w-auto"
         >
           <a
-            className="w-full sm:w-auto bg-gradient-to-r from-primary to-primary-container text-on-primary px-10 py-4 rounded-xl font-bold glow-button btn-interactive text-center"
+            className="w-full sm:w-auto bg-gradient-to-r from-primary to-primary-container text-on-primary px-8 sm:px-10 py-3 sm:py-4 rounded-xl font-bold glow-button btn-interactive text-center text-sm sm:text-base"
             href="#projects"
           >
             VIEW PORTFOLIO
           </a>
           <a
-            className="w-full sm:w-auto border border-outline-variant/50 text-[#e4e2ec] px-10 py-4 rounded-xl font-bold hover:bg-white/5 btn-interactive text-center"
+            className="w-full sm:w-auto border border-outline-variant/50 text-[#e4e2ec] px-8 sm:px-10 py-3 sm:py-4 rounded-xl font-bold hover:bg-white/5 btn-interactive text-center text-sm sm:text-base"
             href="#contact"
           >
             GET IN TOUCH
@@ -99,7 +99,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.2, ease: [0.19, 1, 0.22, 1] as const }}
-          className="mt-12"
+          className="mt-8 sm:mt-12 w-full flex justify-center"
         >
           <SpotifyNowPlaying />
         </motion.div>

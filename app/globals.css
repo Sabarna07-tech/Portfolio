@@ -246,3 +246,49 @@
   }
   .ambient-blob, .grain-overlay, .liquid-orb { display: none !important; }
 }
+
+/* Mobile-first performance optimizations */
+@media (max-width: 640px) {
+  .liquid-orb {
+    filter: blur(40px);
+    opacity: 0.2;
+  }
+  .liquid-1 {
+    width: 80vw; height: 80vw; max-width: 350px; max-height: 350px;
+  }
+  .liquid-2 {
+    width: 60vw; height: 60vw; max-width: 280px; max-height: 280px;
+  }
+  .liquid-3 {
+    width: 50vw; height: 50vw; max-width: 250px; max-height: 250px;
+  }
+  .ambient-blob {
+    filter: blur(50px);
+  }
+  .blob-1 { width: 200px; height: 200px; }
+  .blob-2 { width: 180px; height: 180px; }
+  .blob-3 { width: 150px; height: 150px; }
+  .grain-overlay {
+    opacity: 0.01;
+  }
+  .glass-panel:hover {
+    transform: none;
+  }
+}
+
+/* Tablet refinements */
+@media (min-width: 641px) and (max-width: 1024px) {
+  .liquid-orb {
+    filter: blur(60px);
+    opacity: 0.25;
+  }
+  .liquid-1 {
+    max-width: 600px; max-height: 600px;
+  }
+  .liquid-2 {
+    max-width: 500px; max-height: 500px;
+  }
+  .liquid-3 {
+    max-width: 400px; max-height: 400px;
+  }
+}

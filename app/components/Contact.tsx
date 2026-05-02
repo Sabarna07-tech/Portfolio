@@ -15,43 +15,43 @@ export default function Contact() {
   };
 
   return (
-    <section className="py-32 bg-surface-container-low relative" id="contact">
+    <section className="py-16 sm:py-24 md:py-32 bg-surface-container-low relative" id="contact">
       <div className="absolute inset-0 bg-gradient-to-t from-surface to-transparent pointer-events-none"></div>
 
-      <div className="max-w-4xl mx-auto px-8 relative z-10 text-center">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 md:px-8 relative z-10 text-center">
         <ScrollReveal>
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-primary/20 bg-primary/5 text-primary text-xs font-bold uppercase tracking-widest mb-8">
+          <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full border border-primary/20 bg-primary/5 text-primary text-[10px] sm:text-xs font-bold uppercase tracking-widest mb-6 sm:mb-8">
             <span className="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
             Available for Opportunities
           </div>
-          <h2 className="font-headline text-5xl md:text-7xl font-extrabold tracking-tighter mb-6">
+          <h2 className="font-headline text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-extrabold tracking-tighter mb-4 sm:mb-6">
             Let's Build the <span className="text-secondary">Future</span>
           </h2>
-          <p className="text-on-surface-variant text-lg max-w-2xl mx-auto mb-16 leading-relaxed">
+          <p className="text-on-surface-variant text-sm sm:text-base md:text-lg max-w-2xl mx-auto mb-8 sm:mb-12 md:mb-16 leading-relaxed">
             Whether you have a breakthrough project in mind or simply want to connect over distributed systems and AI architecture, my inbox is open.
           </p>
         </ScrollReveal>
 
-        <ScrollReveal delay={0.2} className="flex flex-col md:flex-row items-center justify-center gap-6 mb-20">
+        <ScrollReveal delay={0.2} className="flex flex-col md:flex-row items-center justify-center gap-4 sm:gap-6 mb-12 sm:mb-16 md:mb-20">
           <button
             onClick={copyEmail}
-            className="w-full md:w-auto flex items-center justify-center gap-3 px-8 py-4 rounded-xl bg-surface-container-highest border border-outline-variant/30 hover:border-primary/50 transition-colors group"
+            className="w-full md:w-auto flex items-center justify-center gap-2 sm:gap-3 px-4 sm:px-6 md:px-8 py-3 sm:py-4 rounded-xl bg-surface-container-highest border border-outline-variant/30 hover:border-primary/50 transition-colors group"
           >
             <Mail className="text-primary group-hover:scale-110 transition-transform" size={20} />
-            <span className="font-mono text-on-surface">{email}</span>
-            <div className="w-px h-4 bg-outline-variant/30 mx-2"></div>
+            <span className="font-mono text-on-surface text-xs sm:text-sm truncate">{email}</span>
+            <div className="w-px h-4 bg-outline-variant/30 mx-1 sm:mx-2"></div>
             {copied ? <span className="text-xs font-bold text-secondary">COPIED</span> : <Copy className="text-on-surface-variant" size={16} />}
           </button>
 
           <a
             href="mailto:sabarna.saha1308@gmail.com"
-            className="w-full md:w-auto px-10 py-4 rounded-xl bg-gradient-to-r from-primary to-secondary text-surface font-bold glow-button transition-transform hover:scale-105 active:scale-95"
+            className="w-full md:w-auto px-8 sm:px-10 py-3 sm:py-4 rounded-xl bg-gradient-to-r from-primary to-secondary text-surface font-bold glow-button transition-transform hover:scale-105 active:scale-95 text-sm sm:text-base"
           >
             SAY HELLO
           </a>
         </ScrollReveal>
 
-        <ScrollReveal delay={0.3} className="flex justify-center gap-8 mb-32">
+        <ScrollReveal delay={0.3} className="flex flex-wrap justify-center gap-4 sm:gap-6 md:gap-8 mb-16 sm:mb-24 md:mb-32">
           <a href="https://linkedin.com/in/sabarnasaha/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-on-surface-variant hover:text-primary transition-colors uppercase tracking-widest text-xs font-bold">
             <Briefcase size={18} /> LinkedIn
           </a>
@@ -65,7 +65,7 @@ export default function Contact() {
       </div>
 
       <footer className="relative z-10 border-t border-outline-variant/10 text-center py-8">
-        <div className="flex flex-col md:flex-row items-center justify-between max-w-7xl mx-auto px-8 gap-4">
+        <div className="flex flex-col md:flex-row items-center justify-between max-w-7xl mx-auto px-4 sm:px-6 md:px-8 gap-3 sm:gap-4">
           <p className="text-xs text-on-surface-variant font-mono">
             &copy; {new Date().getFullYear()} Sabarna Saha. Curated natively with Next.js & Tailwind.
           </p>

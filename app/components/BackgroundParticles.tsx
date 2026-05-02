@@ -16,14 +16,20 @@ export default function BackgroundParticles() {
   const animationFrameRef = useRef<number>(0);
   const dimensionsRef = useRef({ w: 0, h: 0 });
 
-  // Reduced from 60 → 35 particles; connection distance 150 → 120
-  const PARTICLE_COUNT = 35;
+  // Adaptive particle count: fewer on mobile for performance
+  const getParticleCount = () => {
+    if (typeof window === 'undefined') return 35;
+    if (window.innerWidth < 640) return 18;
+    if (window.innerWidth < 1024) return 25;
+    return 35;
+  };
   const CONNECTION_DIST_SQ = 120 * 120; // pre-squared to avoid sqrt
 
   const initParticles = useCallback(() => {
     const { w, h } = dimensionsRef.current;
     const particles: Particle[] = [];
-    for (let i = 0; i < PARTICLE_COUNT; i++) {
+    const count = getParticleCount();
+    for (let i = 0; i < count; i++) {
       particles.push({
         x: Math.random() * w,
         y: Math.random() * h,
