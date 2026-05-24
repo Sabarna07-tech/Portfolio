@@ -1,13 +1,12 @@
 import type { Metadata } from 'next'
-import { Inter, Montserrat } from 'next/font/google'
+import { Rubik, Space_Grotesk } from 'next/font/google'
 import './globals.css'
 import Navbar from '@/components/Navbar'
 import TerminalModal from '@/components/TerminalModal'
-import BackgroundParticles from '@/components/BackgroundParticles'
 import ScrollProgress from '@/components/ScrollProgress'
 
-const inter = Inter({ subsets: ['latin'], variable: '--font-body', weight: ['300', '400', '500', '600'] })
-const montserrat = Montserrat({ subsets: ['latin'], variable: '--font-headline', weight: ['700', '800', '900'] })
+const rubik = Rubik({ subsets: ['latin'], variable: '--font-body', weight: ['300', '400', '500', '600', '700'] })
+const spaceGrotesk = Space_Grotesk({ subsets: ['latin'], variable: '--font-headline', weight: ['500', '600', '700'] })
 
 export const metadata: Metadata = {
   title: 'SABARNA | Developer Portfolio',
@@ -28,9 +27,9 @@ export default function RootLayout({
         We use suppressHydrationWarning to prevent warnings from some 
         browser extensions modifying the body classes/attributes.
       */}
-      <body className={`${inter.variable} ${montserrat.variable} relative bg-surface text-on-surface font-body selection:bg-primary/30 antialiased`}>
-        {/* Animated Background */}
-        <BackgroundParticles />
+      <body className={`${rubik.variable} ${spaceGrotesk.variable} relative font-body antialiased`}>
+        {/* Starfield Background */}
+        <div className="starfield" aria-hidden="true"></div>
 
         {/* Progress Bar */}
         <ScrollProgress />

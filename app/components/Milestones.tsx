@@ -46,17 +46,17 @@ const awards = [
 
 export default function Milestones() {
   return (
-    <section className="py-12 sm:py-16 md:py-24 bg-surface" id="milestones">
+    <section className="py-12 sm:py-16 md:py-24 bg-[#1f1633]" id="milestones">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 relative z-10">
         
         {/* Education Section */}
         <div className="mb-16 sm:mb-24 md:mb-32">
           <ScrollReveal>
             <div className="flex items-center gap-3 sm:gap-4 mb-10 sm:mb-12 md:mb-16" id="education">
-              <h3 className="font-headline font-extrabold flex items-center text-xl sm:text-2xl md:text-3xl">
-                <GraduationCap className="text-tertiary mr-2 sm:mr-3 w-6 h-6 sm:w-8 sm:h-8" /> Education
+              <h3 className="font-headline font-bold flex items-center text-xl sm:text-2xl md:text-3xl text-white">
+                <GraduationCap className="text-[#fa7faa] mr-2 sm:mr-3 w-6 h-6 sm:w-8 sm:h-8" /> Education
               </h3>
-              <div className="flex-grow h-px bg-gradient-to-r from-outline-variant/50 to-transparent"></div>
+              <div className="flex-grow h-px bg-gradient-to-r from-[#362d59] to-transparent"></div>
             </div>
           </ScrollReveal>
           
@@ -64,19 +64,19 @@ export default function Milestones() {
             {education.map((edu, i) => (
               <TiltCard key={i}>
                 <ScrollReveal delay={i * 0.1} className="h-full">
-                  <div className="glass-panel p-5 sm:p-6 md:p-8 rounded-2xl h-full border hover:border-tertiary/50 transition-colors">
+                  <div className="bg-[#1f1633] border border-[#362d59] p-5 sm:p-6 md:p-8 rounded-[18px] h-full hover:border-[#fa7faa]/40 transition-colors">
                     <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-3 sm:mb-4 gap-1 sm:gap-0">
-                      <h4 className="font-headline font-bold text-xl">{edu.school}</h4>
-                      {edu.start && <span className="text-xs font-bold text-tertiary">{edu.start} — {edu.end}</span>}
+                      <h4 className="font-headline font-bold text-xl text-white">{edu.school}</h4>
+                      {edu.start && <span className="text-xs font-bold text-[#fa7faa]">{edu.start} — {edu.end}</span>}
                     </div>
-                    <p className="text-on-surface-variant font-medium mb-1">{edu.degree}</p>
-                    {edu.field && <p className="text-on-surface-variant/70 text-sm">{edu.field}</p>}
-                    {edu.grade && <p className="text-primary text-sm font-bold mt-4">CGPA: {edu.grade}</p>}
+                    <p className="text-[#bdb8c0] font-medium mb-1">{edu.degree}</p>
+                    {edu.field && <p className="text-[#79628c] text-sm">{edu.field}</p>}
+                    {edu.grade && <p className="text-[#c2ef4e] text-sm font-bold mt-4">CGPA: {edu.grade}</p>}
                     
                     {edu.skills.length > 0 && (
                       <div className="flex flex-wrap gap-2 mt-6">
                         {edu.skills.map(s => (
-                          <span key={s} className="text-[10px] px-2 py-1 rounded bg-surface-container-highest text-on-surface-variant">{s}</span>
+                          <span key={s} className="text-[10px] px-2 py-1 rounded bg-[#150f23] text-[#bdb8c0] border border-[#362d59]">{s}</span>
                         ))}
                       </div>
                     )}
@@ -94,8 +94,8 @@ export default function Milestones() {
           <div className="lg:col-span-8">
             <ScrollReveal>
               <div className="flex items-center gap-3 sm:gap-4 mb-8 sm:mb-10 md:mb-12" id="certifications">
-                <h3 className="font-headline font-extrabold flex items-center text-xl sm:text-2xl md:text-3xl">
-                  <BadgeCheck className="text-primary mr-2 sm:mr-3 w-6 h-6 sm:w-8 sm:h-8" /> Credentials
+                <h3 className="font-headline font-bold flex items-center text-xl sm:text-2xl md:text-3xl text-white">
+                  <BadgeCheck className="text-[#c2ef4e] mr-2 sm:mr-3 w-6 h-6 sm:w-8 sm:h-8" /> <span className="chip-lime">Credentials</span>
                 </h3>
               </div>
             </ScrollReveal>
@@ -104,11 +104,11 @@ export default function Milestones() {
               {certifications.map((cert, i) => (
                 <TiltCard key={i}>
                   <ScrollReveal delay={0.05 * (i % 4)} className="h-full">
-                    <div className="glass-panel p-4 sm:p-5 rounded-xl border border-outline-variant/10 hover:border-primary/40 transition-colors h-full flex flex-col justify-between">
-                      <h5 className="font-bold text-sm leading-snug mb-4">{cert.name}</h5>
+                    <div className="bg-[#1f1633] border border-[#362d59] p-4 sm:p-5 rounded-[12px] hover:border-[#c2ef4e]/40 transition-colors h-full flex flex-col justify-between">
+                      <h5 className="font-bold text-sm leading-snug mb-4 text-white">{cert.name}</h5>
                       <div className="flex justify-between items-end">
-                        <span className="text-xs text-on-surface-variant">{cert.issuer}</span>
-                        <span className="text-[10px] uppercase tracking-wider text-primary font-mono">{cert.date}</span>
+                        <span className="text-xs text-[#bdb8c0]">{cert.issuer}</span>
+                        <span className="text-[10px] uppercase tracking-wider text-[#c2ef4e] font-code">{cert.date}</span>
                       </div>
                     </div>
                   </ScrollReveal>
@@ -121,8 +121,8 @@ export default function Milestones() {
           <div className="lg:col-span-4">
             <ScrollReveal>
               <div className="flex items-center gap-3 sm:gap-4 mb-8 sm:mb-10 md:mb-12" id="awards">
-                <h3 className="font-headline font-extrabold flex items-center text-xl sm:text-2xl md:text-3xl">
-                  <Award className="text-secondary mr-2 sm:mr-3 w-6 h-6 sm:w-8 sm:h-8" /> Honors
+                <h3 className="font-headline font-bold flex items-center text-xl sm:text-2xl md:text-3xl text-white">
+                  <Award className="text-[#6a5fc1] mr-2 sm:mr-3 w-6 h-6 sm:w-8 sm:h-8" /> Honors
                 </h3>
               </div>
             </ScrollReveal>
@@ -131,15 +131,15 @@ export default function Milestones() {
               {awards.map((award, i) => (
                 <TiltCard key={i}>
                   <ScrollReveal delay={0.1}>
-                    <div className="glass-panel p-6 rounded-xl border border-secondary/20 relative overflow-hidden">
-                      <div className="absolute top-0 right-0 w-24 h-24 bg-secondary/10 blur-2xl rounded-full -mr-8 -mt-8 pointer-events-none"></div>
+                    <div className="card-spotlight p-6 rounded-[18px] relative overflow-hidden">
+                      <div className="absolute top-0 right-0 w-24 h-24 bg-[#c2ef4e]/10 blur-2xl rounded-full -mr-8 -mt-8 pointer-events-none"></div>
                       <div className="relative z-10" style={{ transform: "translateZ(20px)" }}>
-                        <span className="inline-block px-2 py-1 bg-secondary/10 text-secondary text-[10px] uppercase tracking-widest font-bold rounded mb-4">
+                        <span className="inline-block px-2 py-1 bg-[#c2ef4e]/15 text-[#c2ef4e] text-[10px] uppercase tracking-widest font-bold rounded mb-4">
                           {award.date}
                         </span>
-                        <h4 className="font-headline font-bold text-lg mb-2">{award.title}</h4>
-                        <p className="text-xs text-on-surface-variant font-bold mb-4">{award.issuer}</p>
-                        <p className="text-sm text-on-surface-variant leading-relaxed">
+                        <h4 className="font-headline font-bold text-lg mb-2 text-white">{award.title}</h4>
+                        <p className="text-xs text-[#bdb8c0] font-bold mb-4">{award.issuer}</p>
+                        <p className="text-sm text-[#bdb8c0] leading-relaxed">
                           {award.description}
                         </p>
                       </div>

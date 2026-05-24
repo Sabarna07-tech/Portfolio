@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 
 export default function TiltCard({ children, className = '' }: { children: React.ReactNode, className?: string }) {
@@ -50,13 +50,13 @@ export default function TiltCard({ children, className = '' }: { children: React
       whileTap={{ scale: 0.98 }}
       className={`relative perspective-1000 group ${className}`}
     >
-      {/* Dynamic Light Reflection Layer */}
+      {/* Dynamic Light Reflection Layer — violet-tinted */}
       <motion.div
         className="pointer-events-none absolute inset-0 z-50 rounded-[inherit] opacity-0 transition-opacity duration-300 group-hover:opacity-100 mix-blend-overlay"
         style={{
           background: useTransform(
             [x, y],
-            ([latestX, latestY]: number[]) => `radial-gradient(circle at ${(latestX + 0.5) * 100}% ${(latestY + 0.5) * 100}%, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0) 60%)`
+            ([latestX, latestY]: number[]) => `radial-gradient(circle at ${(latestX + 0.5) * 100}% ${(latestY + 0.5) * 100}%, rgba(106,95,193,0.25) 0%, rgba(194,239,78,0.05) 40%, rgba(255,255,255,0) 60%)`
           )
         }}
       />

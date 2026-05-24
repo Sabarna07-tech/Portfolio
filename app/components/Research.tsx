@@ -36,14 +36,14 @@ const publications: Publication[] = [
 
 export default function Research() {
   return (
-    <section className="py-16 sm:py-24 md:py-32 mt-6 sm:mt-8 md:mt-12 bg-surface" id="publications">
+    <section className="py-16 sm:py-24 md:py-32 mt-6 sm:mt-8 md:mt-12 bg-[#150f23]" id="publications">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
         <ScrollReveal>
           <div className="max-w-3xl mb-10 sm:mb-12 md:mb-16">
-            <h2 className="font-headline text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight mb-3 sm:mb-4">
-              Research <span className="text-gradient">&amp; Publications</span>
+            <h2 className="font-headline text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight mb-3 sm:mb-4 text-white">
+              Research <span className="chip-lime">&amp; Publications</span>
             </h2>
-            <p className="text-on-surface-variant text-sm md:text-base">
+            <p className="text-[#bdb8c0] text-sm md:text-base">
               Exploring ideas at the intersection of AI, systems, and applied engineering.
             </p>
           </div>
@@ -59,44 +59,44 @@ export default function Research() {
                 delay={0.08 * index}
                 className={isFeatured ? 'md:col-span-2 xl:col-span-2' : ''}
               >
-                <article className="glass-panel rounded-2xl p-5 sm:p-7 md:p-8 relative h-full group border border-outline-variant/30">
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary/8 via-transparent to-secondary/8 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+                <article className="bg-[#1f1633] border border-[#362d59] rounded-[18px] p-5 sm:p-7 md:p-8 relative h-full group hover:border-[#6a5fc1]/40 transition-colors">
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#422082]/10 via-transparent to-[#6a5fc1]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-[18px]" />
 
                   <div className="relative z-10 flex flex-col h-full">
                     <div className="flex flex-wrap items-center gap-2 mb-5">
-                      <span className="text-[10px] font-bold tracking-widest uppercase px-3 py-1 rounded-full bg-primary/10 text-primary">
+                      <span className="text-[10px] font-bold tracking-widest uppercase px-3 py-1 rounded-[4px] bg-[#6a5fc1]/15 text-[#6a5fc1]">
                         {item.type === 'research' ? 'Research' : 'Project'}
                       </span>
-                      <span className="text-[10px] font-bold tracking-widest uppercase px-3 py-1 rounded-full bg-surface-container-high text-on-surface-variant">
+                      <span className="text-[10px] font-bold tracking-widest uppercase px-3 py-1 rounded-[4px] bg-[#150f23] text-[#bdb8c0] border border-[#362d59]">
                         {item.year}
                       </span>
                       {item.status && (
-                        <span className="text-[10px] font-bold tracking-widest uppercase px-3 py-1 rounded-full bg-secondary/10 text-secondary">
+                        <span className="text-[10px] font-bold tracking-widest uppercase px-3 py-1 rounded-[4px] bg-[#c2ef4e]/15 text-[#c2ef4e]">
                           {item.status}
                         </span>
                       )}
                       {isFeatured && (
-                        <span className="text-[10px] font-bold tracking-widest uppercase px-3 py-1 rounded-full bg-tertiary/10 text-tertiary">
+                        <span className="text-[10px] font-bold tracking-widest uppercase px-3 py-1 rounded-[4px] bg-[#fa7faa]/15 text-[#fa7faa]">
                           Featured Paper
                         </span>
                       )}
                     </div>
 
-                    <h3 className="font-headline text-lg sm:text-xl md:text-2xl font-black tracking-tight mb-3 sm:mb-4 text-on-surface group-hover:text-primary transition-colors">
+                    <h3 className="font-headline text-lg sm:text-xl md:text-2xl font-bold tracking-tight mb-3 sm:mb-4 text-white group-hover:text-[#c2ef4e] transition-colors">
                       {item.title}
                     </h3>
 
-                    <p className="text-on-surface-variant text-sm leading-relaxed mb-5">
+                    <p className="text-[#bdb8c0] text-sm leading-relaxed mb-5">
                       {item.description}
                     </p>
 
                     {(item.authors || item.venue) && (
-                      <div className="rounded-xl bg-surface-container-low border border-outline-variant/20 px-4 py-3 mb-6">
+                      <div className="rounded-[12px] bg-[#150f23] border border-[#362d59] px-4 py-3 mb-6">
                         {item.authors && (
-                          <p className="text-xs text-tertiary mb-1">{item.authors}</p>
+                          <p className="text-xs text-[#fa7faa] mb-1">{item.authors}</p>
                         )}
                         {item.venue && (
-                          <p className="text-xs text-on-surface-variant">{item.venue}</p>
+                          <p className="text-xs text-[#bdb8c0]">{item.venue}</p>
                         )}
                       </div>
                     )}
@@ -105,7 +105,7 @@ export default function Research() {
                       {item.tech.map((tag) => (
                         <span
                           key={tag}
-                          className="text-[10px] uppercase tracking-widest px-2.5 py-1 rounded-md border border-outline-variant/25 bg-surface-container-high text-on-surface-variant"
+                          className="text-[10px] uppercase tracking-widest px-2.5 py-1 rounded-[4px] border border-[#362d59] bg-[#150f23] text-[#bdb8c0]"
                         >
                           {tag}
                         </span>
@@ -113,8 +113,8 @@ export default function Research() {
                     </div>
 
                     <div className="mt-auto pt-1 flex items-center justify-between gap-3">
-                      <div className="inline-flex items-center gap-2 text-on-surface-variant text-xs">
-                        <FlaskConical size={14} className="text-secondary" />
+                      <div className="inline-flex items-center gap-2 text-[#bdb8c0] text-xs">
+                        <FlaskConical size={14} className="text-[#6a5fc1]" />
                         <span>{item.date ?? item.year}</span>
                       </div>
 
@@ -122,7 +122,7 @@ export default function Research() {
                         href={item.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 rounded-full border border-outline-variant/30 bg-surface-container-high px-4 py-2 text-xs font-bold tracking-wide uppercase text-on-surface hover:text-primary hover:border-primary/40 transition-colors"
+                        className="btn-sentri-ghost text-xs py-2 px-4"
                       >
                         {item.type === 'research' ? 'View Paper' : 'View GitHub'}
                         <ExternalLink size={14} />

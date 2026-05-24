@@ -47,13 +47,9 @@ const experience = [
   }
 ];
 
-export default function Timeline() {
-  const colors = ['primary', 'secondary', 'tertiary', 'primary'];
-  const glowColors = [
-    'rgba(208,188,255,0.6)', 'rgba(76,215,246,0.6)',
-    'rgba(255,184,105,0.6)', 'rgba(208,188,255,0.6)'
-  ];
+const accentColors = ['#c2ef4e', '#6a5fc1', '#fa7faa', '#c2ef4e'];
 
+export default function Timeline() {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -63,41 +59,36 @@ export default function Timeline() {
   const lineHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   return (
-    <section className="py-16 sm:py-24 md:py-32 bg-surface relative overflow-hidden" id="timeline">
+    <section className="py-16 sm:py-24 md:py-32 bg-[#150f23] relative overflow-hidden" id="timeline">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 relative z-[2]">
         <ScrollReveal>
-          <h2 className="font-headline text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight mb-4 text-center">
-            Professional <span className="text-gradient">Evolution</span>
+          <h2 className="font-headline text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight mb-4 text-center text-white">
+            Professional <span className="chip-lime">Evolution</span>
           </h2>
         </ScrollReveal>
 
         <div ref={containerRef} className="relative max-w-4xl mx-auto mt-12 sm:mt-16 md:mt-20">
           {/* Vertical timeline outline line (static bg) */}
-          <div className="absolute left-4 md:left-1/2 transform -translate-x-1/2 w-[2px] h-full bg-outline-variant/20"></div>
+          <div className="absolute left-4 md:left-1/2 transform -translate-x-1/2 w-[2px] h-full bg-[#362d59]/40"></div>
           
-          {/* Animated fill line */}
+          {/* Animated fill line — lime → violet → pink */}
           <motion.div 
             style={{ height: lineHeight }}
-            className="absolute left-4 md:left-1/2 transform -translate-x-1/2 w-[2px] bg-gradient-to-b from-primary via-secondary to-tertiary shadow-[0_0_15px_rgba(208,188,255,0.5)] origin-top"
+            className="absolute left-4 md:left-1/2 transform -translate-x-1/2 w-[2px] bg-gradient-to-b from-[#c2ef4e] via-[#6a5fc1] to-[#fa7faa] shadow-[0_0_15px_rgba(194,239,78,0.4)] origin-top"
           ></motion.div>
           
           <div className="space-y-12 sm:space-y-16 md:space-y-24">
             {experience.map((exp, i) => {
-              const colorBase = colors[i % colors.length];
-              const glow = glowColors[i % glowColors.length];
+              const accent = accentColors[i % accentColors.length];
               const isAlt = i % 2 !== 0;
               const isCurrent = exp.end === 'Present';
-
-              const textColorClass = colorBase === 'primary' ? 'text-primary' : colorBase === 'secondary' ? 'text-secondary' : 'text-tertiary';
-              const bgColorClass = colorBase === 'primary' ? 'bg-primary' : colorBase === 'secondary' ? 'bg-secondary' : 'bg-tertiary';
-              const bgOpacityClass = colorBase === 'primary' ? 'bg-primary/10' : colorBase === 'secondary' ? 'bg-secondary/10' : 'bg-tertiary/10';
 
               return (
                 <div key={exp.title + i} className="relative flex flex-col md:flex-row md:justify-between items-start md:items-center pl-10 sm:pl-12 md:pl-0">
                   {/* Center Dot */}
                   <div 
-                    className={`absolute left-4 md:left-1/2 w-3 h-3 sm:w-4 sm:h-4 ${bgColorClass} border-[3px] sm:border-4 border-surface rounded-full -translate-x-1/2 z-10`}
-                    style={{ boxShadow: `0 0 15px ${glow}` }}
+                    className="absolute left-4 md:left-1/2 w-3 h-3 sm:w-4 sm:h-4 border-[3px] sm:border-4 border-[#150f23] rounded-full -translate-x-1/2 z-10"
+                    style={{ backgroundColor: accent, boxShadow: `0 0 15px ${accent}80` }}
                   ></div>
 
                   {/* Desktop Info Side */}
@@ -106,9 +97,9 @@ export default function Timeline() {
                     delay={0.1}
                     className={`hidden md:block w-[45%] ${isAlt ? 'pl-12 order-2' : 'text-right pr-12 order-1'}`}
                   >
-                    <p className={`text-sm font-bold ${textColorClass}`}>{exp.start} — {exp.end}</p>
-                    <h4 className="font-headline font-black text-xl mb-2">{exp.title}</h4>
-                    <p className="text-on-surface-variant text-sm">{exp.company}</p>
+                    <p className="text-sm font-bold" style={{ color: accent }}>{exp.start} — {exp.end}</p>
+                    <h4 className="font-headline font-bold text-xl mb-2 text-white">{exp.title}</h4>
+                    <p className="text-[#bdb8c0] text-sm">{exp.company}</p>
                   </ScrollReveal>
 
                   {/* Detail Panel Side */}
@@ -117,20 +108,20 @@ export default function Timeline() {
                     delay={0.2}
                     className={`w-full md:w-[45%] ${isAlt ? 'md:pr-12 order-1' : 'md:pl-12 order-2'}`}
                   >
-                    <p className={`md:hidden text-xs font-bold ${textColorClass} mb-2`}>{exp.start} — {exp.end}</p>
+                    <p className="md:hidden text-xs font-bold mb-2" style={{ color: accent }}>{exp.start} — {exp.end}</p>
                     
-                    <div className={`glass-panel p-4 sm:p-5 md:p-6 rounded-lg transform hover:-translate-y-1 transition-transform ${isAlt ? 'md:text-right' : 'text-left'}`}>
-                      <p className="md:hidden font-headline font-black text-lg mb-1">{exp.title}</p>
-                      <p className="md:hidden text-on-surface-variant text-xs mb-3">{exp.company}</p>
+                    <div className={`bg-[#1f1633] border border-[#362d59] p-4 sm:p-5 md:p-6 rounded-[12px] transform hover:-translate-y-1 transition-all hover:border-[#6a5fc1]/40 ${isAlt ? 'md:text-right' : 'text-left'}`}>
+                      <p className="md:hidden font-headline font-bold text-lg mb-1 text-white">{exp.title}</p>
+                      <p className="md:hidden text-[#bdb8c0] text-xs mb-3">{exp.company}</p>
                       
-                      <p className="text-on-surface-variant text-sm leading-relaxed mb-4">{exp.description}</p>
+                      <p className="text-[#bdb8c0] text-sm leading-relaxed mb-4">{exp.description}</p>
                       
                       <div className={`flex flex-wrap gap-2 mb-3 ${isAlt ? 'md:justify-end' : ''}`}>
-                        <span className={`text-[10px] uppercase tracking-widest px-3 py-1 rounded-full border border-outline-variant/20 ${textColorClass}`}>
+                        <span className="text-[10px] uppercase tracking-widest px-3 py-1 rounded-full border border-[#362d59]" style={{ color: accent }}>
                           {exp.type}
                         </span>
                         {isCurrent && (
-                          <span className={`text-[10px] uppercase tracking-widest px-3 py-1 rounded-full ${bgOpacityClass} ${textColorClass} font-bold`}>
+                          <span className="text-[10px] uppercase tracking-widest px-3 py-1 rounded-full font-bold" style={{ backgroundColor: `${accent}20`, color: accent }}>
                             Active
                           </span>
                         )}
@@ -139,7 +130,7 @@ export default function Timeline() {
                       {exp.skills.length > 0 && (
                         <div className={`flex flex-wrap gap-1.5 ${isAlt ? 'md:justify-end' : ''}`}>
                           {exp.skills.map((skill) => (
-                            <span key={skill} className="text-[10px] px-2 py-0.5 rounded bg-surface-container-highest text-on-surface-variant font-medium">
+                            <span key={skill} className="text-[10px] px-2 py-0.5 rounded bg-[#150f23] text-[#bdb8c0] font-medium border border-[#362d59]">
                               {skill}
                             </span>
                           ))}

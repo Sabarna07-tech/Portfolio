@@ -41,25 +41,24 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed top-4 left-1/2 -translate-x-1/2 z-50 flex items-center gap-0 rounded-full transition-all duration-500 ease-out border border-white/5
-      ${scrolled ? 'px-2 py-1.5 bg-[#08090d]/90 shadow-[0_12px_48px_rgba(0,0,0,0.8)] backdrop-blur-2xl' : 'px-2 py-1.5 bg-[#0c0d12]/75 shadow-2xl backdrop-blur-3xl'}`}
+      className={`fixed top-4 left-1/2 -translate-x-1/2 z-50 flex items-center gap-0 rounded-full transition-all duration-500 ease-out border
+      ${scrolled
+        ? 'px-2 py-1.5 bg-[#150f23]/95 shadow-[0_12px_48px_rgba(0,0,0,0.8)] backdrop-blur-xl border-[#362d59]'
+        : 'px-2 py-1.5 bg-[#1f1633]/85 shadow-2xl backdrop-blur-2xl border-[#362d59]/50'}`}
     >
-      {/* Animated Gradient Border (rendered as pseudo-element substitute) */}
-      <div className="absolute inset-[-1px] rounded-full pointer-events-none opacity-60 transition-opacity hover:opacity-100 overlay-border-mask"></div>
-
       {/* Logo Pill */}
       <button
         onClick={scrollToTop}
         className="flex items-center gap-2 px-[6px] py-[6px] pr-3.5 rounded-full hover:bg-white/5 transition-colors group"
       >
-        <div className="relative w-8 h-8 rounded-full overflow-hidden transition-all duration-500 group-hover:shadow-[0_0_12px_rgba(208,188,255,0.3)]">
-          <Image src="/logo.png" alt="SABARNA" fill sizes="32px" className="object-cover mix-blend-screen" />
+        <div className="relative w-8 h-8 rounded-full overflow-hidden transition-all duration-500 group-hover:shadow-[0_0_12px_rgba(194,239,78,0.3)]">
+          <Image src="/logo.png" alt="SABARNA" fill sizes="32px" className="object-cover" />
         </div>
         <span className="text-sm font-bold tracking-tight text-white/90 font-headline hidden sm:inline">SABARNA</span>
       </button>
 
       {/* Divider */}
-      <div className="w-[1px] h-5 bg-white/10 mx-1 hidden md:block"></div>
+      <div className="w-[1px] h-5 bg-[#362d59] mx-1 hidden md:block"></div>
 
       {/* Desktop Links */}
       <div className="hidden md:flex items-center gap-[2px]">
@@ -70,14 +69,14 @@ export default function Navbar() {
               key={item.id}
               href={`#${item.id}`}
               onClick={(e) => handleNavClick(e, item.id)}
-              className={`relative px-4 py-2 rounded-full font-medium text-[13px] tracking-[0.01em] transition-colors duration-300 link-underline
-                ${isActive ? 'text-white bg-primary/10' : 'text-[#e4e2ec]/50 hover:text-[#e4e2ec]/90 hover:bg-white/5 whitespace-nowrap'}`}
+              className={`relative px-4 py-2 rounded-full font-medium text-[13px] tracking-[0.02em] uppercase transition-colors duration-300
+                ${isActive ? 'text-[#c2ef4e] bg-[#c2ef4e]/10' : 'text-white/50 hover:text-white/90 hover:bg-white/5 whitespace-nowrap'}`}
             >
               {item.name}
               {isActive && (
                 <motion.div
                   layoutId="active-nav-indicator"
-                  className="absolute bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-[#d0bcff] shadow-[0_0_8px_rgba(208,188,255,0.6)]"
+                  className="absolute bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-[#c2ef4e] shadow-[0_0_8px_rgba(194,239,78,0.6)]"
                   transition={{ type: 'spring', stiffness: 350, damping: 30 }}
                 />
               )}
@@ -87,7 +86,7 @@ export default function Navbar() {
       </div>
 
       {/* Divider */}
-      <div className="w-[1px] h-5 bg-white/10 mx-1 hidden md:block"></div>
+      <div className="w-[1px] h-5 bg-[#362d59] mx-1 hidden md:block"></div>
 
       {/* Action Buttons */}
       <div className="flex items-center gap-[2px]">
@@ -96,7 +95,7 @@ export default function Navbar() {
           onClick={() => window.dispatchEvent(new Event('toggle-terminal'))}
           title="Open Terminal (Ctrl+`)"
           aria-label="Open Terminal"
-          className="w-8 h-8 rounded-full flex items-center justify-center text-[#e4e2ec]/45 hover:text-primary hover:bg-primary/10 transition-colors"
+          className="w-8 h-8 rounded-full flex items-center justify-center text-white/45 hover:text-[#c2ef4e] hover:bg-[#c2ef4e]/10 transition-colors"
         >
           <Terminal size={18} />
         </button>
@@ -107,7 +106,7 @@ export default function Navbar() {
           rel="noopener noreferrer"
           title="View Source on GitHub"
           aria-label="GitHub Profile"
-          className="w-8 h-8 rounded-full flex items-center justify-center text-[#e4e2ec]/45 hover:text-primary hover:bg-primary/10 transition-colors"
+          className="w-8 h-8 rounded-full flex items-center justify-center text-white/45 hover:text-[#c2ef4e] hover:bg-[#c2ef4e]/10 transition-colors"
         >
           <Code size={18} />
         </a>
@@ -116,7 +115,7 @@ export default function Navbar() {
       {/* Mobile Menu Toggle */}
       <button
         onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-        className="md:hidden w-8 h-8 ml-1 rounded-full flex items-center justify-center text-[#e4e2ec]/60 hover:text-primary hover:bg-primary/10"
+        className="md:hidden w-8 h-8 ml-1 rounded-full flex items-center justify-center text-white/60 hover:text-[#c2ef4e] hover:bg-[#c2ef4e]/10"
       >
         {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
       </button>
@@ -127,15 +126,15 @@ export default function Navbar() {
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -10 }}
-          className="absolute top-[calc(100%+12px)] left-1/2 -translate-x-1/2 w-48 glass-panel p-2 rounded-2xl md:hidden flex flex-col gap-1 shadow-2xl"
+          className="absolute top-[calc(100%+12px)] left-1/2 -translate-x-1/2 w-48 bg-[#150f23] border border-[#362d59] p-2 rounded-2xl md:hidden flex flex-col gap-1 shadow-2xl"
         >
           {navItems.map((item) => (
             <a
               key={item.id}
               href={`#${item.id}`}
               onClick={(e) => handleNavClick(e, item.id)}
-              className={`px-4 py-3 rounded-xl text-sm font-medium transition-colors ${
-                activeSection === item.id ? 'bg-primary/10 text-white' : 'text-white/60 hover:bg-white/5'
+              className={`px-4 py-3 rounded-xl text-sm font-medium uppercase tracking-wider transition-colors ${
+                activeSection === item.id ? 'bg-[#c2ef4e]/10 text-[#c2ef4e]' : 'text-white/60 hover:bg-white/5'
               }`}
             >
               {item.name}

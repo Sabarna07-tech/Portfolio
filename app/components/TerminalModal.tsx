@@ -91,8 +91,8 @@ export default function TerminalModal() {
   };
 
   const getThemeClasses = () => {
-    if (theme === 'cyber') return 'bg-[#0a0a1a] text-[#4cd7f6] border-[#4cd7f6]/30 shadow-[0_0_40px_rgba(76,215,246,0.15)]';
-    return 'bg-[#0a0f0a] text-[#00ff41] border-[#00ff41]/30 shadow-[0_0_40px_rgba(0,255,65,0.1)]';
+    if (theme === 'cyber') return 'bg-[#150f23] text-[#6a5fc1] border-[#362d59] shadow-[0_0_40px_rgba(106,95,193,0.15)]';
+    return 'bg-[#150f23] text-[#c2ef4e] border-[#362d59] shadow-[0_0_40px_rgba(194,239,78,0.1)]';
   };
 
   return (
@@ -112,22 +112,22 @@ export default function TerminalModal() {
             animate={{ scale: 1, y: 0, opacity: 1 }}
             exit={{ scale: 0.95, y: 20, opacity: 0 }}
             transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-            className={`relative w-full max-w-3xl h-[75vh] sm:h-[65vh] md:h-[60vh] rounded-xl flex flex-col border overflow-hidden ${getThemeClasses()}`}
+            className={`relative w-full max-w-3xl h-[75vh] sm:h-[65vh] md:h-[60vh] rounded-[12px] flex flex-col border overflow-hidden ${getThemeClasses()}`}
             onClick={() => inputRef.current?.focus()}
           >
             {/* Header */}
-            <div className={`p-3 bg-black/40 border-b flex items-center justify-between ${theme === 'cyber' ? 'border-[#4cd7f6]/20' : 'border-[#00ff41]/20'}`}>
+            <div className="p-3 bg-black/40 border-b border-[#362d59] flex items-center justify-between">
               <div className="flex gap-2">
                 <button onClick={() => setIsOpen(false)} className="w-3 h-3 rounded-full bg-red-500 hover:bg-red-400"></button>
                 <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
                 <div className="w-3 h-3 rounded-full bg-green-500"></div>
               </div>
-              <p className="text-xs font-mono opacity-60 uppercase tracking-widest">{theme === 'cyber' ? 'root@cybernet:~' : 'sabarna@curator:~'}</p>
+              <p className="text-xs font-code opacity-60 uppercase tracking-widest">{theme === 'cyber' ? 'root@cybernet:~' : 'sabarna@curator:~'}</p>
               <div className="w-12"></div>
             </div>
 
             {/* Output */}
-            <div className="flex-1 overflow-y-auto p-3 sm:p-4 font-mono text-xs sm:text-sm leading-loose no-scrollbar">
+            <div className="flex-1 overflow-y-auto p-3 sm:p-4 font-code text-xs sm:text-sm leading-loose no-scrollbar">
               {history.map((line, i) => (
                 <div key={i} className="whitespace-pre-wrap">{line}</div>
               ))}
@@ -135,15 +135,15 @@ export default function TerminalModal() {
             </div>
 
             {/* Input Row */}
-            <div className={`flex items-center p-3 sm:p-4 bg-black/20 border-t ${theme === 'cyber' ? 'border-[#4cd7f6]/20' : 'border-[#00ff41]/20'}`}>
-              <span className="mr-3">❯</span>
+            <div className="flex items-center p-3 sm:p-4 bg-black/20 border-t border-[#362d59]">
+              <span className="mr-3" style={{ color: theme === 'cyber' ? '#6a5fc1' : '#c2ef4e' }}>❯</span>
               <input
                 ref={inputRef}
                 type="text"
                 value={inputVal}
                 onChange={(e) => setInputVal(e.target.value)}
                 onKeyDown={handleInputDown}
-                className="flex-1 bg-transparent border-none outline-none font-mono text-xs sm:text-sm w-full focus:ring-0"
+                className="flex-1 bg-transparent border-none outline-none font-code text-xs sm:text-sm w-full focus:ring-0"
                 placeholder="type a command..."
                 spellCheck={false}
                 autoFocus

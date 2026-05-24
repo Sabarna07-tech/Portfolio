@@ -82,7 +82,7 @@ export default function SpotifyNowPlaying() {
       transition={{ duration: 0.6, ease: [0.19, 1, 0.22, 1] }}
       whileHover={hasTrack ? { scale: 1.02, y: -2 } : { scale: 1.02 }}
       whileTap={{ scale: 0.98 }}
-      className="flex items-center gap-2 sm:gap-3 bg-surface-container-highest/60 backdrop-blur-3xl border border-white/10 p-2.5 sm:p-3 rounded-2xl shadow-xl transition-all duration-300 group overflow-hidden relative max-w-[320px] sm:max-w-[360px] w-full"
+      className="flex items-center gap-2 sm:gap-3 bg-[#1f1633] border border-[#362d59] p-2.5 sm:p-3 rounded-[12px] shadow-xl transition-all duration-300 group overflow-hidden relative max-w-[320px] sm:max-w-[360px] w-full"
     >
       {/* Dynamic Ambient Spotify Glow */}
       <div className="absolute inset-0 bg-[#1DB954]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
@@ -105,7 +105,7 @@ export default function SpotifyNowPlaying() {
             )}
           </div>
         ) : (
-          <div className="w-12 h-12 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center shrink-0">
+          <div className="w-12 h-12 rounded-lg bg-[#150f23] border border-[#362d59] flex items-center justify-center shrink-0">
             <svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6 text-[#1DB954]/70 group-hover:text-[#1DB954] transition-colors">
               <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.54.659.3 1.02zm1.44-3.3c-.301.42-.84.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15.001 10.62 18.66 12.84c.361.181.54.78.301 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.6.18-1.2.72-1.38 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/>
             </svg>
@@ -122,20 +122,20 @@ export default function SpotifyNowPlaying() {
               transition={{ duration: 0.25 }}
               className="flex flex-col"
             >
-              <span className={`text-[9px] font-bold tracking-widest uppercase mb-0.5 opacity-90 ${isNowPlaying ? 'text-[#1DB954]' : 'text-on-surface-variant/70'}`}>
+              <span className={`text-[9px] font-bold tracking-widest uppercase mb-0.5 opacity-90 ${isNowPlaying ? 'text-[#1DB954]' : 'text-[#79628c]'}`}>
                 {isNowPlaying ? 'Now Playing' : 'Recently Played'}
               </span>
               <div className="flex items-center gap-2 min-w-0">
                 {isNowPlaying && <span className="h-2 w-2 rounded-full bg-[#1DB954] animate-pulse shrink-0" />}
-                <span className="text-sm font-bold text-on-surface truncate group-hover:text-primary transition-colors">
+                <span className="text-sm font-bold text-white truncate group-hover:text-[#c2ef4e] transition-colors">
                   {data.title}
                 </span>
               </div>
-              <span className="text-xs text-on-surface-variant truncate opacity-80">
+              <span className="text-xs text-[#bdb8c0] truncate opacity-80">
                 {data.artist}
               </span>
               {isNowPlaying && progress !== null && (
-                <div className="mt-2 h-1.5 rounded-full bg-white/10 overflow-hidden">
+                <div className="mt-2 h-1.5 rounded-full bg-[#362d59] overflow-hidden">
                   <motion.div
                     className="h-full bg-[#1DB954]/90"
                     initial={{ width: 0 }}
