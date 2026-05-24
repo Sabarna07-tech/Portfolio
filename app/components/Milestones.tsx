@@ -46,7 +46,7 @@ const awards = [
 
 export default function Milestones() {
   return (
-    <section className="py-12 sm:py-16 md:py-24 bg-[#1f1633]" id="milestones">
+    <section className="py-12 sm:py-16 md:py-24" id="milestones">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 relative z-10">
         
         {/* Education Section */}

@@ -469,9 +469,48 @@
   }
 }
 
-/* ===== TABLET ===== */
-@media (min-width: 641px) and (max-width: 1024px) {
-  .starfield::before {
-    opacity: 0.12;
-  }
+/* ===== TERMINAL GLITCH EFFECT ===== */
+.terminal-glitch {
+  animation: glitch-anim 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite;
+  position: relative;
+}
+
+.terminal-glitch::before,
+.terminal-glitch::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 0, 0, 0.2);
+  z-index: -1;
+}
+
+.terminal-glitch::before {
+  animation: glitch-anim-2 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite reverse;
+  transform: translate(-4px, 2px);
+}
+
+.terminal-glitch::after {
+  animation: glitch-anim 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite;
+  transform: translate(4px, -2px);
+}
+
+@keyframes glitch-anim {
+  0% { transform: translate(0) }
+  20% { transform: translate(-4px, 2px) }
+  40% { transform: translate(-2px, -4px) }
+  60% { transform: translate(4px, 2px) }
+  80% { transform: translate(2px, -2px) }
+  100% { transform: translate(0) }
+}
+
+@keyframes glitch-anim-2 {
+  0% { transform: translate(0) }
+  20% { transform: translate(4px, -2px) }
+  40% { transform: translate(2px, 4px) }
+  60% { transform: translate(-4px, -2px) }
+  80% { transform: translate(-2px, 2px) }
+  100% { transform: translate(0) }
 }

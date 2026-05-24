@@ -59,7 +59,7 @@ export default function Timeline() {
   const lineHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   return (
-    <section className="py-16 sm:py-24 md:py-32 bg-[#150f23] relative overflow-hidden" id="timeline">
+    <section className="py-16 sm:py-24 md:py-32 relative overflow-hidden" id="timeline">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 relative z-[2]">
         <ScrollReveal>
           <h2 className="font-headline text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight mb-4 text-center text-white">

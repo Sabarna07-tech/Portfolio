@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const COMMANDS: Record<string, () => string[]> = {
+const STATIC_COMMANDS: Record<string, (args: string[]) => string[]> = {
   about: () => [
     'Sabarna Saha | AI/ML Engineer @ Jadavpur University',
     'Specializing in RAG, Deep Learning, and highly performant architectures.',
@@ -11,14 +11,34 @@ const COMMANDS: Record<string, () => string[]> = {
   whoami: () => ['Sabarna Saha — AI/ML Engineer & Power Engineer'],
   pwd: () => ['/home/sabarna/portfolio'],
   ls: () => ['about.tsx  skills.ts  experience.md  certs.json  projects/'],
+  projects: (args) => {
+    const topFlag = args.find(a => a.startsWith('--top='));
+    const limit = topFlag ? parseInt(topFlag.split('=')[1], 10) : null;
+    
+    const projectsList = [
+      '1. Sentri: Developer-tools brand UI',
+      '2. RAG QA System: Advanced document retrieval',
+      '3. Vercel Clone: Edge-deployed infrastructure',
+      '4. CLI Tool: Terminal-based automation',
+      '5. Portfolio v3: You are looking at it'
+    ];
+    
+    if (limit && !isNaN(limit)) {
+      return [`Showing top ${limit} projects:`, ...projectsList.slice(0, limit)];
+    }
+    return ['All projects:', ...projectsList];
+  },
   help: () => [
     'Available commands:',
-    '  about     - Who is Sabarna?',
-    '  ls / pwd  - Standard Unix commands',
-    '  whoami    - Print user info',
-    '  theme     - Toggle visual theme',
-    '  clear     - Clear terminal',
-    '  exit      - Close terminal'
+    '  about       - Who is Sabarna?',
+    '  projects    - List projects (use --top=N flag)',
+    '  fetch       - Fetch a random tech quote',
+    '  ls / pwd    - Standard Unix commands',
+    '  whoami      - Print user info',
+    '  sudo        - Superuser execution',
+    '  theme       - Toggle visual theme',
+    '  clear       - Clear terminal',
+    '  exit        - Close terminal'
   ]
 };
 
@@ -32,6 +52,9 @@ export default function TerminalModal() {
     ''
   ]);
   const [inputVal, setInputVal] = useState('');
+  const [isGlitching, setIsGlitching] = useState(false);
+  const [isProcessing, setIsProcessing] = useState(false);
+  
   const inputRef = useRef<HTMLInputElement>(null);
   const endRef = useRef<HTMLDivElement>(null);
 
@@ -62,30 +85,67 @@ export default function TerminalModal() {
     endRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [isOpen, history]);
 
-  const executeCommand = (cmd: string) => {
-    const trimmed = cmd.trim().toLowerCase();
-    if (!trimmed) return;
+  const executeCommand = async (cmd: string) => {
+    const parts = cmd.trim().split(' ').filter(Boolean);
+    if (parts.length === 0) return;
+
+    const baseCmd = parts[0].toLowerCase();
+    const args = parts.slice(1);
 
     setHistory((prev) => [...prev, `❯ ${cmd}`]);
+    setInputVal('');
 
-    if (trimmed === 'clear') {
+    if (baseCmd === 'clear') {
       setHistory([]);
-    } else if (trimmed === 'exit') {
+      return;
+    } 
+    
+    if (baseCmd === 'exit') {
       setIsOpen(false);
-    } else if (trimmed === 'theme') {
+      return;
+    } 
+    
+    if (baseCmd === 'theme') {
       setTheme(t => t === 'hacker' ? 'cyber' : 'hacker');
       setHistory(prev => [...prev, `Switched theme to ${theme === 'hacker' ? 'cyber' : 'hacker'}`]);
-    } else if (COMMANDS[trimmed]) {
-      setHistory((prev) => [...prev, ...COMMANDS[trimmed]()]);
-    } else {
-      setHistory((prev) => [...prev, `command not found: ${trimmed}`, `Type "help" for a list of commands.`]);
+      return;
+    } 
+    
+    if (baseCmd === 'sudo') {
+      // Trigger glitch
+      setIsGlitching(true);
+      setTimeout(() => setIsGlitching(false), 800);
+      setHistory(prev => [...prev, 'ACCESS DENIED. This incident will be reported.']);
+      return;
     }
 
-    setInputVal('');
+    if (baseCmd === 'fetch') {
+      setIsProcessing(true);
+      setHistory(prev => [...prev, 'Fetching data from external API...']);
+      
+      try {
+        const res = await fetch('https://programming-quotesapi.vercel.app/api/random');
+        if (!res.ok) throw new Error('API failed');
+        const data = await res.json();
+        setHistory(prev => [...prev, `"${data.quote}"`, `- ${data.author}`]);
+      } catch (err) {
+        setHistory(prev => [...prev, 'Failed to fetch external data.', 'Check your connection or CORS policies.']);
+      } finally {
+        setIsProcessing(false);
+        setTimeout(() => endRef.current?.scrollIntoView({ behavior: 'smooth' }), 50);
+      }
+      return;
+    }
+
+    if (STATIC_COMMANDS[baseCmd]) {
+      setHistory((prev) => [...prev, ...STATIC_COMMANDS[baseCmd](args)]);
+    } else {
+      setHistory((prev) => [...prev, `command not found: ${baseCmd}`, `Type "help" for a list of commands.`]);
+    }
   };
 
   const handleInputDown = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter') {
+    if (e.key === 'Enter' && !isProcessing) {
       executeCommand(inputVal);
     }
   };
@@ -112,7 +172,7 @@ export default function TerminalModal() {
             animate={{ scale: 1, y: 0, opacity: 1 }}
             exit={{ scale: 0.95, y: 20, opacity: 0 }}
             transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-            className={`relative w-full max-w-3xl h-[75vh] sm:h-[65vh] md:h-[60vh] rounded-[12px] flex flex-col border overflow-hidden ${getThemeClasses()}`}
+            className={`relative w-full max-w-3xl h-[75vh] sm:h-[65vh] md:h-[60vh] rounded-[12px] flex flex-col border overflow-hidden ${getThemeClasses()} ${isGlitching ? 'terminal-glitch' : ''}`}
             onClick={() => inputRef.current?.focus()}
           >
             {/* Header */}
@@ -144,9 +204,10 @@ export default function TerminalModal() {
                 onChange={(e) => setInputVal(e.target.value)}
                 onKeyDown={handleInputDown}
                 className="flex-1 bg-transparent border-none outline-none font-code text-xs sm:text-sm w-full focus:ring-0"
-                placeholder="type a command..."
+                placeholder={isProcessing ? "processing..." : "type a command..."}
                 spellCheck={false}
                 autoFocus
+                disabled={isProcessing}
               />
             </div>
           </motion.div>

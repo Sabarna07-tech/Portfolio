@@ -105,7 +105,7 @@ export default async function Dashboard() {
   ]);
 
   return (
-    <section className="py-12 sm:py-16 md:py-20 bg-[#1f1633]">
+    <section className="py-12 sm:py-16 md:py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 relative z-10">
         <ScrollReveal>
           <div className="flex items-center gap-3 sm:gap-4 mb-10 sm:mb-12 md:mb-16">

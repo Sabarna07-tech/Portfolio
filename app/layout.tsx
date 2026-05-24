@@ -4,6 +4,9 @@ import './globals.css'
 import Navbar from '@/components/Navbar'
 import TerminalModal from '@/components/TerminalModal'
 import ScrollProgress from '@/components/ScrollProgress'
+import WebGLBackgroundDynamic from '@/components/WebGLBackgroundDynamic'
+import { Analytics } from '@vercel/analytics/react'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 
 const rubik = Rubik({ subsets: ['latin'], variable: '--font-body', weight: ['300', '400', '500', '600', '700'] })
 const spaceGrotesk = Space_Grotesk({ subsets: ['latin'], variable: '--font-headline', weight: ['500', '600', '700'] })
@@ -28,8 +31,8 @@ export default function RootLayout({
         browser extensions modifying the body classes/attributes.
       */}
       <body className={`${rubik.variable} ${spaceGrotesk.variable} relative font-body antialiased`}>
-        {/* Starfield Background */}
-        <div className="starfield" aria-hidden="true"></div>
+        {/* WebGL Background */}
+        <WebGLBackgroundDynamic />
 
         {/* Progress Bar */}
         <ScrollProgress />
@@ -45,6 +48,10 @@ export default function RootLayout({
         <main className="relative z-10 w-full flex flex-col">
           {children}
         </main>
+        
+        {/* Vercel Metrics */}
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   )

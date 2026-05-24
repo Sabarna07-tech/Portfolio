@@ -25,7 +25,7 @@ const letter = {
 
 export default function Hero() {
   return (
-    <section id="hero" className="relative min-h-screen flex items-center justify-center pt-16 pb-24 sm:pt-20 sm:pb-20 overflow-visible bg-[#1f1633]">
+    <section id="hero" className="relative min-h-screen flex items-center justify-center pt-16 pb-24 sm:pt-20 sm:pb-20 overflow-visible">
       {/* Deep Violet Radial Glow */}
       <div className="absolute inset-0 hero-gradient z-0 pointer-events-none"></div>
       

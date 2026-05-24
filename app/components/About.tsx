@@ -4,7 +4,7 @@ import { Layers, Zap } from 'lucide-react';
 
 export default function About() {
   return (
-    <section className="py-16 sm:py-24 md:py-32 bg-[#150f23] relative" id="process">
+    <section className="py-16 sm:py-24 md:py-32 relative" id="process">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 grid md:grid-cols-2 gap-8 md:gap-16 items-center">
         
         {/* Left Side: Image & Stats */}

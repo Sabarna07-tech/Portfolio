@@ -63,7 +63,7 @@ export default async function Skills() {
   const techStack = data?.techStack?.length ? data.techStack : FALLBACK_STACK;
 
   return (
-    <section className="py-16 sm:py-24 md:py-32 bg-[#150f23]" id="tech">
+    <section className="py-16 sm:py-24 md:py-32" id="tech">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
         <ScrollReveal className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 sm:mb-16 md:mb-20 gap-4 sm:gap-8">
           <div>

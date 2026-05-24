@@ -24,7 +24,7 @@ export default async function Projects() {
   const projects = data?.projects?.length ? data.projects : FALLBACK_PROJECTS;
 
   return (
-    <section className="py-16 sm:py-24 md:py-32 pb-24 sm:pb-32 md:pb-48 bg-[#1f1633]" id="portfolio">
+    <section className="py-16 sm:py-24 md:py-32 pb-24 sm:pb-32 md:pb-48" id="portfolio">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
         <ScrollReveal>
           <h2 className="font-headline text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight mb-12 sm:mb-16 md:mb-20 text-center text-white">
