@@ -19,7 +19,7 @@ export async function POST(req: Request) {
   // 2. Query the Pinecone index for the closest code chunks
   const index = pc.index('portfolio-rag');
   const searchRes = await index.query({
-    vector: queryEmbedding.data[0].values as number[],
+    vector: (queryEmbedding.data[0] as any).values as number[],
     topK: 4,
     includeMetadata: true,
   });
