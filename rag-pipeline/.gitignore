@@ -1,0 +1,4 @@
+venv/
+my_knowledge_base/
+chroma_code_db/
+__pycache__/

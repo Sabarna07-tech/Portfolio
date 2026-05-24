@@ -30,15 +30,16 @@ const STATIC_COMMANDS: Record<string, (args: string[]) => string[]> = {
   },
   help: () => [
     'Available commands:',
-    '  about       - Who is Sabarna?',
-    '  projects    - List projects (use --top=N flag)',
-    '  fetch       - Fetch a random tech quote',
-    '  ls / pwd    - Standard Unix commands',
-    '  whoami      - Print user info',
-    '  sudo        - Superuser execution',
-    '  theme       - Toggle visual theme',
-    '  clear       - Clear terminal',
-    '  exit        - Close terminal'
+    '  chat <msg> - Talk to an AI trained on my GitHub codebase (RAG)',
+    '  about      - Who is Sabarna?',
+    '  projects   - List projects (use --top=N flag)',
+    '  fetch      - Fetch a random tech quote',
+    '  ls / pwd   - Standard Unix commands',
+    '  whoami     - Print user info',
+    '  sudo       - Superuser execution',
+    '  theme      - Toggle visual theme',
+    '  clear      - Clear terminal',
+    '  exit       - Close terminal'
   ]
 };
 
@@ -85,10 +86,59 @@ export default function TerminalModal() {
     endRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [isOpen, history]);
 
-  const executeCommand = async (cmd: string) => {
-    const parts = cmd.trim().split(' ').filter(Boolean);
-    if (parts.length === 0) return;
+  const handleChatQuery = async (query: string) => {
+    setIsProcessing(true);
+    setHistory((prev) => [...prev, `❯ chat ${query}`, 'Querying semantic vector space...']);
+    
+    try {
+      const res = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ query })
+      });
 
+      if (!res.body) throw new Error('No stream available');
+
+      const reader = res.body.getReader();
+      const decoder = new TextDecoder();
+      
+      setHistory((prev) => [...prev, '']); // Create an empty line for the stream
+
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        const chunkText = decoder.decode(value, { stream: true });
+        
+        // Append chunk by chunk to the last line in the history
+        setHistory((prev) => {
+          const newHistory = [...prev];
+          newHistory[newHistory.length - 1] += chunkText;
+          return newHistory;
+        });
+        setTimeout(() => endRef.current?.scrollIntoView({ behavior: 'smooth' }), 10);
+      }
+    } catch (error) {
+      setHistory((prev) => [...prev, 'Error: Pipeline connection failed. Check API keys.']);
+    } finally {
+      setIsProcessing(false);
+      setTimeout(() => endRef.current?.scrollIntoView({ behavior: 'smooth' }), 50);
+    }
+  };
+
+  const executeCommand = async (cmd: string) => {
+    const trimmed = cmd.trim();
+    if (!trimmed) return;
+
+    // --- NEW RAG INTERCEPT ---
+    if (trimmed.toLowerCase().startsWith('chat ')) {
+      const query = trimmed.slice(5);
+      handleChatQuery(query);
+      setInputVal('');
+      return;
+    }
+    // -------------------------
+
+    const parts = trimmed.split(' ').filter(Boolean);
     const baseCmd = parts[0].toLowerCase();
     const args = parts.slice(1);
 
@@ -136,6 +186,8 @@ export default function TerminalModal() {
       }
       return;
     }
+
+
 
     if (STATIC_COMMANDS[baseCmd]) {
       setHistory((prev) => [...prev, ...STATIC_COMMANDS[baseCmd](args)]);
