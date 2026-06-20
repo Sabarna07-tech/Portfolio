@@ -1,4 +1,5 @@
 import Hero from '@/components/Hero';
+import StatsBand from '@/components/StatsBand';
 import About from '@/components/About';
 import Skills from '@/components/Skills';
 import Timeline from '@/components/Timeline';
@@ -12,6 +13,7 @@ export default function Home() {
   return (
     <>
       <Hero />
+      <StatsBand />
       <About />
       <Skills />
       <Projects />

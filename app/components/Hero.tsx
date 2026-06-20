@@ -2,6 +2,8 @@
 
 import { motion } from 'framer-motion';
 import SpotifyNowPlaying from './SpotifyNowPlaying';
+import RotatingText from './RotatingText';
+import MagneticButton from './MagneticButton';
 
 const sentence = {
   hidden: { opacity: 1 },
@@ -68,6 +70,20 @@ export default function Hero() {
           </span>
         </motion.h1>
         
+        {/* Rotating focus line */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.7, ease: 'easeOut' }}
+          className="flex items-baseline justify-center gap-2 sm:gap-3 mb-6 sm:mb-8 font-headline text-base sm:text-xl md:text-2xl font-medium text-white"
+        >
+          <span className="text-[#79628c]">I build</span>
+          <RotatingText
+            words={['RAG systems', 'deep-learning models', 'intelligent agents', 'production AI']}
+            className="text-[#c2ef4e] font-bold"
+          />
+        </motion.div>
+
         {/* Body — airy marketing line-height (2.0) */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
@@ -86,18 +102,18 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 1, ease: [0.19, 1, 0.22, 1] as const }}
           className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 w-full sm:w-auto"
         >
-          <a
-            className="w-full sm:w-auto btn-sentri-inverted text-center shadow-[rgb(21,15,35)_0_0_8px_6px]"
+          <MagneticButton
             href="#portfolio"
+            className="w-full sm:w-auto btn-sentri-inverted text-center shadow-[rgb(21,15,35)_0_0_8px_6px]"
           >
             VIEW PORTFOLIO
-          </a>
-          <a
-            className="w-full sm:w-auto btn-sentri-ghost text-center"
+          </MagneticButton>
+          <MagneticButton
             href="#contact"
+            className="w-full sm:w-auto btn-sentri-ghost text-center"
           >
             GET IN TOUCH
-          </a>
+          </MagneticButton>
         </motion.div>
 
         {/* Integration: Spotify Now Playing */}

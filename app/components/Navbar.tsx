@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { Terminal, Code, Menu, X } from 'lucide-react';
+import { Terminal, Code, Menu, X, Search } from 'lucide-react';
 import { useActiveSection } from '@/hooks/useActiveSection';
 
 const navItems = [
@@ -90,6 +90,26 @@ export default function Navbar() {
 
       {/* Action Buttons */}
       <div className="flex items-center gap-[2px]">
+        {/* Command Palette — desktop pill */}
+        <button
+          onClick={() => window.dispatchEvent(new Event('toggle-command-palette'))}
+          title="Command Palette (Ctrl+K)"
+          aria-label="Open command palette"
+          className="hidden md:flex items-center gap-2 pl-2.5 pr-2 py-1.5 rounded-full text-white/45 hover:text-white/90 hover:bg-white/5 transition-colors"
+        >
+          <Search size={15} />
+          <kbd className="text-[10px] font-code tracking-wide border border-[#362d59] rounded px-1.5 py-0.5 text-white/40">
+            ⌘K
+          </kbd>
+        </button>
+        {/* Command Palette — mobile icon */}
+        <button
+          onClick={() => window.dispatchEvent(new Event('toggle-command-palette'))}
+          aria-label="Open command palette"
+          className="md:hidden w-8 h-8 rounded-full flex items-center justify-center text-white/45 hover:text-[#c2ef4e] hover:bg-[#c2ef4e]/10 transition-colors"
+        >
+          <Search size={18} />
+        </button>
         {/* Terminal Button */}
         <button
           onClick={() => window.dispatchEvent(new Event('toggle-terminal'))}
