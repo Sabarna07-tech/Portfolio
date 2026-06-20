@@ -5,6 +5,7 @@ import Skills from '@/components/Skills';
 import Timeline from '@/components/Timeline';
 import Milestones from '@/components/Milestones';
 import Projects from '@/components/Projects';
+import CurrentlyBuilding from '@/components/CurrentlyBuilding';
 import Research from '@/components/Research';
 import Dashboard from '@/components/Dashboard';
 import Contact from '@/components/Contact';
@@ -17,6 +18,7 @@ export default function Home() {
       <About />
       <Skills />
       <Projects />
+      <CurrentlyBuilding />
       <Research />
       <Dashboard />
       <Timeline />

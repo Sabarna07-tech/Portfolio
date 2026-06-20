@@ -24,6 +24,7 @@ export interface GithubData {
   totalStars: number;
   techStack: TechStackItem[];
   projects: GithubRepo[];
+  recent: GithubRepo[];
 }
 
 export async function getGithubData(): Promise<GithubData | null> {
@@ -90,11 +91,18 @@ export async function getGithubData(): Promise<GithubData | null> {
     // Sort to keep newest first based on updated_at
     featured.sort((a, b) => new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime());
 
+    // Most recently active (non-fork) repos for the live "Currently Building" panel.
+    const recent = repos
+      .filter((r) => !r.fork)
+      .sort((a, b) => new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime())
+      .slice(0, 6);
+
     return {
       totalRepos: repos.length,
       totalStars,
       techStack: sortedTech,
-      projects: featured.slice(0, 4) // Ensure we only return top 4
+      projects: featured.slice(0, 4), // Ensure we only return top 4
+      recent
     };
   } catch (error) {
     console.error('API Fetch Error:', error);

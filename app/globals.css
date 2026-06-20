@@ -440,6 +440,24 @@
   50% { opacity: 1; }
 }
 
+/* ===== PROJECT / ACTIVITY VISUALS ===== */
+.bg-grid-faint {
+  background-image:
+    linear-gradient(rgba(106, 95, 193, 0.10) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(106, 95, 193, 0.10) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+.scanline {
+  top: 0;
+  animation: scanSweep 5s linear infinite;
+}
+
+@keyframes scanSweep {
+  0% { transform: translateY(-120%); }
+  100% { transform: translateY(560%); }
+}
+
 /* ===== REDUCED MOTION ===== */
 @media (prefers-reduced-motion: reduce) {
   * {
