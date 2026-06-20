@@ -1,5 +1,6 @@
 import { getGithubData, GithubRepo } from '@/lib/github';
 import ScrollReveal from './ScrollReveal';
+import { StaggerGroup, StaggerItem } from './Stagger';
 import { Radio, Star, ArrowUpRight } from 'lucide-react';
 import { timeAgo, langColor, titleize } from '@/lib/format';
 
@@ -36,9 +37,9 @@ export default async function CurrentlyBuilding() {
         </ScrollReveal>
 
         {repos.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
-            {repos.map((repo: GithubRepo, i: number) => (
-              <ScrollReveal key={repo.id} delay={0.05 * (i % 3)} className="h-full">
+          <StaggerGroup className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4" stagger={0.06}>
+            {repos.map((repo: GithubRepo) => (
+              <StaggerItem key={repo.id} className="h-full">
                 <a
                   href={repo.html_url}
                   target="_blank"
@@ -77,9 +78,9 @@ export default async function CurrentlyBuilding() {
                     </span>
                   </div>
                 </a>
-              </ScrollReveal>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerGroup>
         ) : (
           <ScrollReveal>
             <a

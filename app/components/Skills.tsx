@@ -1,5 +1,6 @@
 import { getGithubData, TechStackItem } from '@/lib/github';
 import ScrollReveal from './ScrollReveal';
+import { StaggerGroup, StaggerItem } from './Stagger';
 import TiltCard from './TiltCard';
 import { Terminal, Cloud, MemoryStick, Globe, Palette, Blocks, Server, Code2, BrainCircuit, Database, Cpu, Wrench } from 'lucide-react';
 
@@ -78,38 +79,42 @@ export default async function Skills() {
           </div>
         </ScrollReveal>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
+        <StaggerGroup className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
           {techStack.map((tech: TechStackItem, index: number) => {
             if (index === 0) {
               return (
-                <TiltCard key={tech.name} className="sm:col-span-2 sm:row-span-2">
-                  <ScrollReveal delay={0.1} className="w-full h-full card-spotlight p-6 sm:p-8 md:p-10 rounded-[18px] relative overflow-hidden group">
-                    <div className="absolute top-0 right-0 p-8">
-                      {getLargeIconForTech(tech.name)}
+                <StaggerItem key={tech.name} className="sm:col-span-2 sm:row-span-2 h-full">
+                  <TiltCard className="h-full">
+                    <div className="w-full h-full card-spotlight p-6 sm:p-8 md:p-10 rounded-[18px] relative overflow-hidden group">
+                      <div className="absolute top-0 right-0 p-8">
+                        {getLargeIconForTech(tech.name)}
+                      </div>
+                      <h3 className="font-headline text-xl sm:text-2xl md:text-3xl font-bold mb-4 sm:mb-6 mt-2 sm:mt-4 relative z-10 text-white">{tech.name} Mastery</h3>
+                      <p className="text-[#bdb8c0] leading-relaxed max-w-sm relative z-10 font-medium text-sm sm:text-base">Primary focus area across most open source contributions and architectural designs.</p>
+                      <div className="mt-6 sm:mt-8 md:mt-12 relative z-10">
+                        <span className="px-5 py-2.5 bg-[#150f23] text-[#c2ef4e] border border-[#c2ef4e]/20 rounded-full text-xs font-bold uppercase tracking-widest">
+                          {tech.count} Repositories
+                        </span>
+                      </div>
                     </div>
-                    <h3 className="font-headline text-xl sm:text-2xl md:text-3xl font-bold mb-4 sm:mb-6 mt-2 sm:mt-4 relative z-10 text-white">{tech.name} Mastery</h3>
-                    <p className="text-[#bdb8c0] leading-relaxed max-w-sm relative z-10 font-medium text-sm sm:text-base">Primary focus area across most open source contributions and architectural designs.</p>
-                    <div className="mt-6 sm:mt-8 md:mt-12 relative z-10">
-                      <span className="px-5 py-2.5 bg-[#150f23] text-[#c2ef4e] border border-[#c2ef4e]/20 rounded-full text-xs font-bold uppercase tracking-widest">
-                        {tech.count} Repositories
-                      </span>
-                    </div>
-                  </ScrollReveal>
-                </TiltCard>
+                  </TiltCard>
+                </StaggerItem>
               );
             }
-            
+
             return (
-              <TiltCard key={tech.name}>
-                <ScrollReveal delay={0.1 + index * 0.1} className="h-full bg-[#1f1633] border border-[#362d59] p-5 sm:p-6 md:p-8 rounded-[18px] hover:border-[#6a5fc1]/40 transition-colors group">
-                  {getIconForTech(tech.name)}
-                  <h4 className="font-headline font-bold text-white mb-2">{tech.name}</h4>
-                  <p className="text-sm text-[#bdb8c0] leading-relaxed">Frequently utilized in {tech.count} recent projects.</p>
-                </ScrollReveal>
-              </TiltCard>
+              <StaggerItem key={tech.name} className="h-full">
+                <TiltCard className="h-full">
+                  <div className="h-full bg-[#1f1633] border border-[#362d59] p-5 sm:p-6 md:p-8 rounded-[18px] hover:border-[#6a5fc1]/40 transition-colors group">
+                    {getIconForTech(tech.name)}
+                    <h4 className="font-headline font-bold text-white mb-2">{tech.name}</h4>
+                    <p className="text-sm text-[#bdb8c0] leading-relaxed">Frequently utilized in {tech.count} recent projects.</p>
+                  </div>
+                </TiltCard>
+              </StaggerItem>
             );
           })}
-        </div>
+        </StaggerGroup>
 
         {/* Domain Expertise (Manual Skills) */}
         <div className="mt-16 sm:mt-24 md:mt-32">
@@ -120,23 +125,25 @@ export default async function Skills() {
             </h3>
           </ScrollReveal>
           
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
+          <StaggerGroup className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
             {DOMAIN_EXPERTISE.map((domain, idx) => (
-              <TiltCard key={idx}>
-                <ScrollReveal delay={0.1 * idx} className="h-full bg-[#1f1633] border border-[#362d59] p-6 rounded-[18px] hover:border-[#6a5fc1]/40 transition-colors">
-                  {domain.icon}
-                  <h4 className="font-headline font-bold text-lg mb-4 text-white">{domain.category}</h4>
-                  <div className="flex flex-wrap gap-2">
-                    {domain.skills.map(skill => (
-                      <span key={skill} className="px-2.5 py-1 text-xs bg-[#150f23] text-[#bdb8c0] hover:text-[#c2ef4e] transition-colors rounded border border-[#362d59]">
-                        {skill}
-                      </span>
-                    ))}
+              <StaggerItem key={idx} className="h-full">
+                <TiltCard className="h-full">
+                  <div className="h-full bg-[#1f1633] border border-[#362d59] p-6 rounded-[18px] hover:border-[#6a5fc1]/40 transition-colors">
+                    {domain.icon}
+                    <h4 className="font-headline font-bold text-lg mb-4 text-white">{domain.category}</h4>
+                    <div className="flex flex-wrap gap-2">
+                      {domain.skills.map(skill => (
+                        <span key={skill} className="px-2.5 py-1 text-xs bg-[#150f23] text-[#bdb8c0] hover:text-[#c2ef4e] transition-colors rounded border border-[#362d59]">
+                          {skill}
+                        </span>
+                      ))}
+                    </div>
                   </div>
-                </ScrollReveal>
-              </TiltCard>
+                </TiltCard>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerGroup>
         </div>
       </div>
     </section>

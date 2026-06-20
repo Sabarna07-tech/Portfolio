@@ -1,5 +1,6 @@
 import { getGithubData, GithubRepo } from '@/lib/github';
 import ScrollReveal from './ScrollReveal';
+import { StaggerGroup, StaggerItem } from './Stagger';
 import TiltCard from './TiltCard';
 import { Code, ExternalLink, Star, Clock, GitFork } from 'lucide-react';
 import { timeAgo, langColor, accentFor, titleize } from '@/lib/format';
@@ -64,7 +65,7 @@ export default async function Projects() {
 
             const visualPanel = (
               <TiltCard className={`rounded-[18px] ${isAlternate ? 'md:-mr-4 lg:-mr-8' : 'md:-ml-4 lg:-ml-8'}`}>
-                <ScrollReveal delay={0.1} direction={isAlternate ? 'right' : 'left'}>
+                <div>
                   <div
                     className={`relative rounded-[18px] overflow-hidden aspect-[16/9] bg-[#120c1f] border border-[#362d59] shadow-[0_20px_50px_rgba(0,0,0,0.45)] group transition-transform duration-700 hover:scale-[1.02] ${
                       isAlternate ? 'rotate-[0.6deg]' : 'rotate-[-0.6deg]'
@@ -131,15 +132,14 @@ export default async function Projects() {
                       )}
                     </div>
                   </div>
-                </ScrollReveal>
+                </div>
               </TiltCard>
             );
 
             const infoPanel = (
               <TiltCard className="z-10 relative">
-                <ScrollReveal delay={0.2} direction={isAlternate ? 'left' : 'right'}>
-                  <div
-                    className={`bg-[#1f1633] border border-[#362d59] p-6 sm:p-8 md:p-10 rounded-[18px] ${
+                <div
+                  className={`bg-[#1f1633] border border-[#362d59] p-6 sm:p-8 md:p-10 rounded-[18px] ${
                       isAlternate ? 'md:-mr-6 md:pl-8 lg:-mr-12 lg:pl-16' : 'md:-ml-6 md:pr-8 lg:-ml-12 lg:pr-16'
                     } shadow-2xl hover:border-[#6a5fc1]/40 transition-colors`}
                   >
@@ -190,17 +190,28 @@ export default async function Projects() {
                       </div>
                     </div>
                   </div>
-                </ScrollReveal>
               </TiltCard>
             );
 
             return (
-              <div key={repo.id} className="grid md:grid-cols-12 gap-4 sm:gap-6 md:gap-8 items-center group relative">
-                <div className={`md:col-span-7 ${isAlternate ? 'order-1 md:order-2' : ''}`}>{visualPanel}</div>
-                <div className={`md:col-span-5 ${isAlternate ? 'order-2 md:order-1 relative z-20' : 'relative z-20'}`}>
+              <StaggerGroup
+                key={repo.id}
+                className="grid md:grid-cols-12 gap-4 sm:gap-6 md:gap-8 items-center group relative"
+                stagger={0.12}
+              >
+                <StaggerItem
+                  direction={isAlternate ? 'right' : 'left'}
+                  className={`md:col-span-7 ${isAlternate ? 'order-1 md:order-2' : ''}`}
+                >
+                  {visualPanel}
+                </StaggerItem>
+                <StaggerItem
+                  direction={isAlternate ? 'left' : 'right'}
+                  className={`md:col-span-5 ${isAlternate ? 'order-2 md:order-1 relative z-20' : 'relative z-20'}`}
+                >
                   {infoPanel}
-                </div>
-              </div>
+                </StaggerItem>
+              </StaggerGroup>
             );
           })}
         </div>
