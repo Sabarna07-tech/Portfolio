@@ -1,10 +1,10 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { Terminal, Code, Menu, X, Search } from 'lucide-react';
 import { useActiveSection } from '@/hooks/useActiveSection';
+import Logo from './Logo';
 
 const navItems = [
   { name: 'Portfolio', id: 'portfolio' },
@@ -51,8 +51,8 @@ export default function Navbar() {
         onClick={scrollToTop}
         className="flex items-center gap-2 px-[6px] py-[6px] pr-3.5 rounded-full hover:bg-white/5 transition-colors group"
       >
-        <div className="relative w-8 h-8 rounded-full overflow-hidden transition-all duration-500 group-hover:shadow-[0_0_12px_rgba(194,239,78,0.3)]">
-          <Image src="/logo.png" alt="SABARNA" fill sizes="32px" className="object-cover" />
+        <div className="relative w-8 h-8 transition-all duration-500 group-hover:rotate-[8deg] group-hover:drop-shadow-[0_0_12px_rgba(194,239,78,0.45)]">
+          <Logo className="w-full h-full" />
         </div>
         <span className="text-sm font-bold tracking-tight text-white/90 font-headline hidden sm:inline">SABARNA</span>
       </button>

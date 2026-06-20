@@ -5,6 +5,7 @@ import Navbar from '@/components/Navbar'
 import TerminalModal from '@/components/TerminalModal'
 import CommandPalette from '@/components/CommandPalette'
 import ScrollProgress from '@/components/ScrollProgress'
+import CursorSpotlight from '@/components/CursorSpotlight'
 import WebGLBackgroundDynamic from '@/components/WebGLBackgroundDynamic'
 import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/next'
@@ -37,7 +38,6 @@ export const metadata: Metadata = {
     'Jadavpur University',
     'Portfolio',
   ],
-  icons: { icon: '/logo.png' },
   openGraph: {
     type: 'website',
     url: SITE_URL,
@@ -78,7 +78,10 @@ export default function RootLayout({
 
         {/* Grain Overlay */}
         <div className="grain-overlay"></div>
-        
+
+        {/* Pointer Spotlight */}
+        <CursorSpotlight />
+
         {/* Navigation */}
         <Navbar />
         <TerminalModal />
